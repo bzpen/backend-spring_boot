@@ -5,11 +5,11 @@
 - 传入数据：
 
   ```json
-  data：{
+  data:{
   
-  ​	"admin_number":"value",
+  	"admin_number":"value",
   
-  ​	"admin_pass":"value"
+  	"admin_pass":"value"
   
   }
   ```
@@ -21,11 +21,11 @@
   ```json
   {
   
-  ​	"state":  true / false/404,
+  	"state":  true/false/404,
   
-  ​	"msg" : "结果",
+  	"msg" : "结果",
   
-  ​	"token":  "token登录信息"
+  	"token":  "token登录信息"
   
   }
   ```
@@ -37,13 +37,13 @@
 - 传入数据：
 
   ```json
-  data：{
+  data:{
   
-  ​	"admin_name":"value"，
+  	"admin_name":"value",
   
-  ​	"admin_number":"value"，
+  	"admin_number":"value",
   
-  ​	"admin_pass":"value"
+  	"admin_pass":"value"
   
   }
   ```
@@ -55,9 +55,9 @@
   ```json
   {
   
-  ​	"state":  true / false/404,
+  	"state":  true / false/404,
   
-  ​	"msg" ： "结果",
+  	"msg" : "结果"
   
   }
   ```
@@ -75,9 +75,9 @@
   ```json
   {
   
-  ​	"state":  true / false/404,
+  	"state":  true / false/404,
   
-  ​	"admins" ： 结果集（管理员表数据集）, 
+  	"admins" : "结果集（管理员表数据集）"
   
   }
   ```
@@ -89,9 +89,9 @@
 - 传入数据：
 
   ```json
-  data：{
+  data:{
   
-  ​	"admin_id"："value",
+  	"admin_id":"value",
   
   }
   ```
@@ -103,9 +103,9 @@
   ```json
   {
   
-  ​	"state":  true / false / 404,
+  	"state":  true / false / 404,
   
-  ​	"msg" ： "结果",
+  	"msg" : "结果"
   
   }
   ```
@@ -117,9 +117,9 @@
 - 传入数据：
 
   ```json
-  data：{
+  data:{
   
-  ​	"token"："value",
+  	"token":"value",
   
   }
   ```
@@ -131,11 +131,11 @@
   ```json
   {
   
-  ​	"state":  true / false/404,
+  	"state":  true / false/404,
   
-  ​	"msg" ： "结果",
+  	"msg" : "结果",
   
-  ​	"token":  "token登录信息"
+  	"token":  "token登录信息"
   
   }
   ```
@@ -161,9 +161,9 @@
   ```json
   {
   
-  ​	"state":  true / false / 404,
+  	"state":  true / false / 404,
   
-  ​	"users" ： 结果集（用户表数据集）, 
+  	"users" : "结果集（用户表数据集）"
   
   }
   ```
@@ -175,9 +175,9 @@
 - 传入数据：
 
   ```json
-  data：{
+  data:{
   
-  ​	"userId" : "value"
+  	"userId" : "value"
   
   }
   ```
@@ -189,9 +189,9 @@
   ```json
   {
   
-  ​	"state":  true / false / 404,
+  	"state":  true / false / 404,
   
-  ​	"msg" ： "结果",
+  	"msg" : "结果"
   
   }
   ```
@@ -203,9 +203,9 @@
 - 传入数据：
 
   ```json
-  data：{
+  data:{
   
-  ​	"userId" : "value"
+  	"userId" : "value"
   
   }
   ```
@@ -217,9 +217,9 @@
   ```json
   {
   
-  ​	"state":  true / false / 404,
+  	"state":  true / false / 404,
   
-  ​	"msg"： "结果"，,
+  	"msg": "结果"
   
   }
   ```
@@ -231,9 +231,9 @@
 - 传入数据：
 
   ```json
-  data：{
+  data:{
   
-  ​	"userId" : "value"
+  	"userId" : "value"
   
   }
   ```
@@ -245,9 +245,9 @@
   ```json
   {
   
-  ​	"state":  true / false / 404,
+  	"state":  true / false / 404,
   
-  ​	"msg"： "结果",
+  	"msg": "结果"
   
   }
   ```
@@ -270,10 +270,10 @@
 
   ```json
   {
-      success=true / false, 
-  	code=200 / 500, 
-  	msg=数据获取成功！/..., 
-  	data=[]
+      "success":true / false, 
+  	"code":200 / 500, 
+  	"msg":数据获取成功！/..., 
+  	"data":[]
   }
   ```
 
@@ -284,7 +284,7 @@
 - 传入数据：
 
   ```json
-  data：{
+  data:{
   
   	"spiderId" : "value"
   
@@ -311,10 +311,10 @@
 
   ```json
   {
-      success=true / false, 
-  	code=200 / 500, 
-  	msg=数据获取成功！/..., 
-  	data=[]
+      "success":true / false, 
+  	"code":200 / 500, 
+  	"msg":数据修改成功！/..., 
+  	"data":[]
   }
   ```
 
@@ -332,10 +332,10 @@
 
   ```json
   {
-      success=true / false, 
-  	code=200 / 500, 
-  	msg=数据删除成功！/..., 
-  	data=null
+      "success":true / false, 
+  	"code":200 / 500, 
+  	"msg":数据删除成功！/..., 
+  	"data":[]
   }
   ```
 
