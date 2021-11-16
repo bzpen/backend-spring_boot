@@ -5,7 +5,7 @@
 - 传入数据：
 
   ```json
-  data:{
+  "data":{
   
   	"admin_number":"value",
   
@@ -37,7 +37,7 @@
 - 传入数据：
 
   ```json
-  data:{
+  "data":{
   
   	"admin_name":"value",
   
@@ -89,7 +89,7 @@
 - 传入数据：
 
   ```json
-  data:{
+  "data":{
   
   	"admin_id":"value",
   
@@ -117,7 +117,7 @@
 - 传入数据：
 
   ```json
-  data:{
+  "data":{
   
   	"token":"value",
   
@@ -146,7 +146,15 @@
 
 #### 6、数据库设计
 
-![image-20211102170813493](C:\Users\31186\AppData\Roaming\Typora\typora-user-images\image-20211102170813493.png)
+|    字段名    |  类型   |    注释    |
+| :----------: | :-----: | :--------: |
+|   admin_id   |   int   |  管理员id  |
+|  admin_name  | varchar | 管理员姓名 |
+| admin_number | varchar | 管理员账号 |
+|  admin_pass  | varchar | 管理员密码 |
+|     role     | varchar | 管理员权限 |
+
+
 
 ## 用户管理        ip+"/user"
 
@@ -175,7 +183,7 @@
 - 传入数据：
 
   ```json
-  data:{
+  "data":{
   
   	"userId" : "value"
   
@@ -203,7 +211,7 @@
 - 传入数据：
 
   ```json
-  data:{
+  "data":{
   
   	"userId" : "value"
   
@@ -231,7 +239,7 @@
 - 传入数据：
 
   ```json
-  data:{
+  "data":{
   
   	"userId" : "value"
   
@@ -256,7 +264,15 @@
 
 #### 5、数据库设计
 
-![image-20211102171501199](C:\Users\31186\AppData\Roaming\Typora\typora-user-images\image-20211102171501199.png)
+|   字段名   |   类型    |     注释     |
+| :--------: | :-------: | :----------: |
+|   userId   |    int    |    用户id    |
+|  userName  |  varchar  |   用户姓名   |
+|  userPass  |  varchar  |   用户账号   |
+| userEmail  |  varchar  |   用户邮箱   |
+|   roleId   | timestamp |   用户权限   |
+| registTime | timestamp | 用户注册时间 |
+| userPhoto  |  varchar  | 上次登录时间 |
 
 ## Spider管理    ip + “/spider”
 
@@ -284,7 +300,7 @@
 - 传入数据：
 
   ```json
-  data:{
+  "data":{
   
   	"spiderId" : "value"
   
@@ -323,7 +339,7 @@
 - 传入数据：
 
   ```json
-  data:{
+  "data":{
       "spiderId": "value",
   }
   ```
@@ -340,6 +356,16 @@
   ```
 
   
+
+#### 5、数据库设计
+
+|     字段名     |    类型    |   注释   |
+| :------------: | :--------: | :------: |
+|    spiderId    | intvarchar |  种类id  |
+| spiderNamename |  varchar   | 蜘蛛名称 |
+|  spiderPhoto   |  varchar   | 蜘蛛图片 |
+|  spiderSample  |    int     | 样本数量 |
+| spiderDetails  |  varchar   | 详情介绍 |
 
 
 
