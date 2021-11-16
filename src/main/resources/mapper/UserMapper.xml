@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserMapper">
+
+    <select id="user_List" resultType="User">
+        SELECT tb_user.*, tb_role.type
+        FROM
+        (tb_user left join tb_role ON tb_role.roleId = tb_user.roleId)
+    </select>
+
+    <delete id="delete_User" parameterType="User">
+        delete from tb_user
+        where userId = #{userId}
+    </delete>
+
+    <update id="up_User" parameterType="User">
+        update tb_user
+        set roleId = 1
+        where userId=#{userId}
+    </update>
+
+    <update id="down_User" parameterType="User">
+        update tb_user
+        set roleId = 2
+        where userId=#{userId}
+    </update>
+
+    <select id="get_User" resultType="User">
+        SELECT *
+        FROM tb_user where userId=#{userId}
+    </select>
+
+</mapper>
