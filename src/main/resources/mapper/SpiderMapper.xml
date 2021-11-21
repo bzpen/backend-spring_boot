@@ -30,6 +30,9 @@
         values (#{spiderName},#{spiderPhoto},#{spiderSample},#{spiderDetails})
     </insert>
 
-
+    <select id="get_name" resultType="Spider">
+        select * from tb_spider
+        where spiderName=#{spiderName}
+    </select>
 
 </mapper>

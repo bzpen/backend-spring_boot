@@ -307,6 +307,20 @@
   }
   ```
 
+- 返回数据：
+
+  ```json
+  {
+      "success":true / false, 
+  	"code":200 / 500, 
+  	"msg":数据查询成功！/..., 
+  	"data":{
+      	"spider":{},
+  		"img_path":[]
+  	}
+  }
+  ```
+
   
 
 #### 3、更新一条spider记录          “/updata”   POST
@@ -351,6 +365,29 @@
       "success":true / false, 
   	"code":200 / 500, 
   	"msg":数据删除成功！/..., 
+  	"data":[]
+  }
+  ```
+
+#### 5、插入一条spider记录      “/insert”   POST
+
+- 传入数据
+
+  ```json
+  "data":{
+      "spiderName":"value",
+  	"spiderDetails":"value",
+      "files":[]
+  }
+  ```
+
+- 返回数据
+
+  ```json
+  {
+      "success":true / false, 
+  	"code":200 / 500, 
+  	"msg":数据添加成功！/..., 
   	"data":[]
   }
   ```

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * @author kaito kuroba
  * @Email 3118659412@qq.com
@@ -59,8 +61,8 @@ public class SpiderController {
      * @return
      */
     @PostMapping("/insert")
-    public Result insert(Spider spider, MultipartFile file){
-        return spiderService.insert(spider,file);
+    public Result insert(Spider spider, List<MultipartFile> files){
+        return spiderService.insert(spider,files);
     }
 
     /**
