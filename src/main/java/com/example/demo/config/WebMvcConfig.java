@@ -54,7 +54,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry){
         InterceptorRegistration registration1 = registry.addInterceptor(new TokenInterceptor());
-        registration1.excludePathPatterns("/admin/**","/spider/**");
+        registration1.excludePathPatterns("/admin/**","/static/**");
     }
 
 }

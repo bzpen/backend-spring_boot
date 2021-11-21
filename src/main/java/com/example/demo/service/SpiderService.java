@@ -29,7 +29,7 @@ public interface SpiderService {
      * @param spider
      * @return
      */
-    Result insert(Spider spider, MultipartFile file);
+    Result insert(Spider spider, List<MultipartFile> files);
 
     /**
      * 更新一条记录

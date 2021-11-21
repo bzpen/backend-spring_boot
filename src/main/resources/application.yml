@@ -13,9 +13,13 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   mvc:
     static-path-pattern: /static/**
+
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: Asia/Shanghai
+  web:
+    resources:
+      static-locations: file:/root/java/java_backend/img/
 mybatis:
   type-aliases-package: com.example.demo.entity
   mapper-locations: classpath:mapper/*Mapper.xml
