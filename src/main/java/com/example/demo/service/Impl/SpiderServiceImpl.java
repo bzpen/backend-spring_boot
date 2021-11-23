@@ -1,5 +1,6 @@
 package com.example.demo.service.Impl;
 
+import com.example.demo.config.WebMvcConfig;
 import com.example.demo.core.response.Result;
 import com.example.demo.entity.Spider;
 import com.example.demo.entity.SpiderImgPath;
@@ -7,6 +8,7 @@ import com.example.demo.mapper.SpiderMapper;
 import com.example.demo.service.SpiderService;
 import com.example.demo.utils.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,8 +30,8 @@ public class SpiderServiceImpl implements SpiderService {
     @Autowired
     SpiderMapper spiderMapper;
 
-    private final String REAL_IMG_PATH = "/root/java/java_backend/img/";
-    private final String VIRTUAL_IMG_PATH = "static/spider_photo/";
+    private final String REAL_IMG_PATH = WebMvcConfig.REAL_IMG_PATH + "spider_photo/";
+    private final String VIRTUAL_IMG_PATH = WebMvcConfig.VIRTUAL_IMG_PATH;
 
     @Override
     public Result gets() {
@@ -61,7 +63,7 @@ public class SpiderServiceImpl implements SpiderService {
                 return Result.success("数据列表为空！");
             }
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }
         return Result.failure("数据获取失败！");
     }
@@ -79,7 +81,7 @@ public class SpiderServiceImpl implements SpiderService {
                     for(MultipartFile file:files){
                         String fileName= file.getOriginalFilename();
                         if(fileName.endsWith("jpg")||fileName.endsWith("png")||fileName.endsWith("jpeg")){
-                            file.transferTo(Paths.get(REAL_IMG_PATH + file_path + "\\" + fileName));
+                            file.transferTo(Paths.get(REAL_IMG_PATH + file_path + "/" + fileName));
                         }
                     }
                     spider.setSpiderPhoto(file_path);

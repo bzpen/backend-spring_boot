@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.core.response.Result;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * <p>
@@ -47,6 +49,11 @@ public class UserController {
         return userService.delete_User(user);
     }
 
+
+    @PostMapping("/deleteUsers")
+    public Result delete_Users(List<User> users){
+        return userService.delete_Users(users);
+    }
     /**
      * 升级用户权限
      * @param user

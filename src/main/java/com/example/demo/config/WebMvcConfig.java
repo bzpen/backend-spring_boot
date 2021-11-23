@@ -3,21 +3,15 @@ package com.example.demo.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-//    private TokenInterceptor tokenInterceptor;
-//
-//    //构造方法
-//    public void WebConfiguration(TokenInterceptor tokenInterceptor){
-//        this.tokenInterceptor = tokenInterceptor;
-//    }
+//    public static final String REAL_IMG_PATH = "D:/Vue毕设项目/毕设后台/img/";
+    public static final String REAL_IMG_PATH = "/root/java/java_backend/img/";
+    public static final String VIRTUAL_IMG_PATH = "/static/spider_photo/";
 
     /***
      * 跨域请求配置
@@ -39,22 +33,24 @@ public class WebMvcConfig implements WebMvcConfigurer {
         };
     }
 
-/*
-*     自定义拦截器
-*     拦截查看token
-*
-* registration.excludePathPatterns("")   排除一些请求外其余请求均拦截
-* registration.addPathPatterns("")       拦截写出的请求
-*/
-
     /***
      * 自定义拦截器
      * @param registry
      */
     @Override
-    public void addInterceptors(InterceptorRegistry registry){
-        InterceptorRegistration registration1 = registry.addInterceptor(new TokenInterceptor());
-        registration1.excludePathPatterns("/admin/**","/static/**");
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new TokenInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/admin/**","/static/**","/spider/insert");
+    }
+
+    /**
+     * 添加静态资源文件，外部可以直接访问地址
+     * @param registry
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("file:"+REAL_IMG_PATH);
     }
 
 }
