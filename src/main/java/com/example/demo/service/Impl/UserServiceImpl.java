@@ -1,5 +1,7 @@
 package com.example.demo.service.Impl;
 
+import com.example.demo.core.response.Result;
+import com.example.demo.entity.Spider;
 import com.example.demo.entity.User;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.UserService;
@@ -141,5 +143,21 @@ public class UserServiceImpl implements UserService {
         result.put("state",state);
         result.put("msg",msg);
         return result;
+    }
+
+    @Override
+    public Result delete_Users(List<User> users) {
+        try{
+            for(User user:users){
+                int result=userMapper.delete_User(user);
+                if(result != 1){
+                    return Result.failure("批量删除失败，请重试！");
+                }
+            }
+            return Result.success("批量删除成功！");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return Result.failure("数据获取失败！");
     }
 }
