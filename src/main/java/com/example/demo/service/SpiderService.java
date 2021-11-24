@@ -29,8 +29,15 @@ public interface SpiderService {
      * @param spider
      * @return
      */
-    Result insert(Spider spider, List<MultipartFile> files);
+    Result insert(Spider spider);
 
+    /**
+     * 插入图片
+     * @param file   图片
+     * @param fileName   文件夹名
+     * @return
+     */
+    Result insert(MultipartFile file,String fileName);
     /**
      * 更新一条记录
      * @param spider

@@ -61,15 +61,27 @@ public class SpiderController {
      * @return
      */
     @PostMapping("/insert")
-    public Result insert(Spider spider, List<MultipartFile> files){
-        return spiderService.insert(spider,files);
+    public Result insert(Spider spider){
+        return spiderService.insert(spider);
     }
 
+    /**
+     * 插入图片
+     * @param file
+     * @param file_path
+     * @return
+     */
+    @PostMapping("/image")
+    public Result insertPhoto(MultipartFile file, String file_path){
+        System.out.println(file_path);
+        return spiderService.insert(file,file_path);
+    }
     /**
      * 删除一条记录
      * @param spider
      * @return
      */
+    @PostMapping("/delete")
     public Result delete(Spider spider){
         return spiderService.delete(spider);
     }

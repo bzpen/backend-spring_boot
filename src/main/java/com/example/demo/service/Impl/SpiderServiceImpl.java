@@ -69,36 +69,43 @@ public class SpiderServiceImpl implements SpiderService {
     }
 
     @Override
-    public Result insert(Spider spider, List<MultipartFile> files) {
+    public Result insert(Spider spider) {
         String file_path= Long.toString(System.currentTimeMillis());
-        File save = new File( REAL_IMG_PATH + file_path);
         try{
-            if(files.isEmpty()){
-                return Result.failure("图片为空，请选择图片！");
-            }else{
-                if(spiderMapper.get_name(spider).isEmpty()){
-                    save.mkdir();
-                    for(MultipartFile file:files){
-                        String fileName= file.getOriginalFilename();
-                        if(fileName.endsWith("jpg")||fileName.endsWith("png")||fileName.endsWith("jpeg")){
-                            file.transferTo(Paths.get(REAL_IMG_PATH + file_path + "/" + fileName));
-                        }
-                    }
-                    spider.setSpiderPhoto(file_path);
-                    spider.setSpiderSample(0);
-                    int result = spiderMapper.insert(spider);
-                    if(result == 1 ){
-                        return Result.success("插入数据成功！");
-                    }
-                }else{
-                    return Result.failure("种类名称重复！");
+            if(spiderMapper.get_name(spider).isEmpty()){
+                spider.setSpiderSample(0);
+                spider.setSpiderPhoto(file_path);
+                int result = spiderMapper.insert(spider);
+                if(result == 1 ){
+                    return Result.success("插入数据成功！",spider);
                 }
+            }else{
+                return Result.failure("种类名称重复！");
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        save.deleteOnExit();
         return Result.failure("插入失败请重试！");
+    }
+
+    @Override
+    public Result insert(MultipartFile file, String file_path) {
+        File save = new File(REAL_IMG_PATH + file_path);
+        try {
+            if (file.isEmpty()) {
+                return Result.failure("图片为空，请选择图片！");
+            } else {
+                save.mkdir();
+                String file_Name = file.getOriginalFilename();
+                if (file_Name.endsWith("jpg") || file_Name.endsWith("png") || file_Name.endsWith("jpeg")) {
+                    file.transferTo(Paths.get(REAL_IMG_PATH + file_path + "/" + file_Name));
+                }
+                return Result.success();
+            }
+        } catch (Exception e) {
+            Result.success("插入失败！",e);
+        }
+        return Result.failure();
     }
 
     @Override
