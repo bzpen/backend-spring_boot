@@ -41,7 +41,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new TokenInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/admin/**","/static/**","/spider/insert");
+                .excludePathPatterns("/admin/**","/static/**","/spider/image");
     }
 
     /**

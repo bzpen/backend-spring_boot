@@ -276,7 +276,7 @@
 
 ## Spider管理    ip + “/spider”
 
-#### 1、获取spider列表         "/gets"    POST
+#### 1、获取spider列表         "/getAll"    POST
 
 - 传入数据：
 
@@ -377,7 +377,34 @@
   "data":{
       "spiderName":"value",
   	"spiderDetails":"value",
-      "files":[]
+  }
+  ```
+  
+- 返回数据
+
+  ```json
+  {
+      "success":true / false, 
+  	"code":200 / 500, 
+  	"msg":"数据添加成功！/...", 
+  	"data":{
+      	"spiderId":"",
+      	"spiderName":"value",
+  		"spiderDetails":"value",
+      	"spiderPhoto":"图片存储文件夹",
+      	"spiderDetails":""
+  	}
+  }
+  ```
+
+#### 6、插入图片      “/image”   POST
+
+- 传入数据
+
+  ```json
+  "data":{
+      "spiderPhoto":"存储文件夹",
+  	"file":"图片文件",
   }
   ```
 
@@ -387,14 +414,14 @@
   {
       "success":true / false, 
   	"code":200 / 500, 
-  	"msg":数据添加成功！/..., 
+  	"msg":"数据添加成功！/...", 
   	"data":[]
   }
   ```
 
   
 
-#### 5、数据库设计
+#### 7、数据库设计
 
 |     字段名     |    类型    |   注释   |
 | :------------: | :--------: | :------: |
