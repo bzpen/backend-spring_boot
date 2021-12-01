@@ -4,6 +4,7 @@ package com.example.demo.controller;
 import com.example.demo.core.response.Result;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,7 @@ import java.util.List;
 @ResponseBody
 @Controller
 @RequestMapping("/user")
+@Api(tags = "用户管理接口")
 public class UserController {
 
     @Autowired
@@ -44,7 +46,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @RequestMapping("/deleteUser")
+    @PostMapping("/deleteUser")
     public HashMap<String,Object> delete_User(User user){
         return userService.delete_User(user);
     }
@@ -59,7 +61,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @RequestMapping("/up_User")
+    @PostMapping("/up_User")
     public HashMap<String,Object> up_User(User user){
         return userService.up_User(user);
     }
@@ -69,7 +71,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @RequestMapping("/down_User")
+    @PostMapping("/down_User")
     public HashMap<String,Object> down_User(User user){
         return userService.down_User(user);
     }

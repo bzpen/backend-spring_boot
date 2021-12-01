@@ -13,6 +13,17 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public static final String REAL_IMG_PATH = "/root/java/java_backend/img/";
     public static final String VIRTUAL_IMG_PATH = "/static/spider_photo/";
 
+    String[] openApi = {
+            "/swagger-ui.html",
+            "/v2/api-docs",
+            "/v3/api-docs",
+            "/webjars/springfox-swagger-ui/**",
+            "/swagger-resources",
+            "/swagger-resources/configuration/**",
+            "/swagger-ui/**",
+            "/swagger-ui/",
+            "/admin/**","/static/**","/spider/image",
+    };
     /***
      * 跨域请求配置
      * @return
@@ -41,7 +52,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new TokenInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/admin/**","/static/**","/spider/image");
+                .excludePathPatterns(openApi);
     }
 
     /**
