@@ -21,7 +21,7 @@
 
     <delete id="delete" parameterType="Spider">
         delete from tb_spider
-        where tb_spider=#{tb_spider}
+        where tb_spider=#{spiderId}
     </delete>
 
     <insert id="insert" parameterType="Spider">

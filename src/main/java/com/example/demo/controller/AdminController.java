@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Admin;
 import com.example.demo.service.AdminService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ import java.util.HashMap;
 @ResponseBody
 @Controller
 @RequestMapping("/admin")
+@Api(tags = "管理员管理接口")
 public class AdminController {
 
     @Autowired

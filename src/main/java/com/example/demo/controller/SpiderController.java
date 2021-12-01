@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.core.response.Result;
 import com.example.demo.entity.Spider;
 import com.example.demo.service.SpiderService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import java.util.List;
 @RequestMapping("/spider")
 @Controller
 @ResponseBody
+@Api(tags = "蜘蛛种类管理接口")
 public class SpiderController {
 
     @Autowired
