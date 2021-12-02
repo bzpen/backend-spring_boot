@@ -91,6 +91,11 @@
             <artifactId>poi-ooxml-schemas</artifactId>
             <version>3.11</version>
         </dependency>
+<!--        日志-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
