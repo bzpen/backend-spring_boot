@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 
 
+import lombok.Data;
+
 /**
  * @author kaito kuroba
  * @Email 3118659412@qq.com
