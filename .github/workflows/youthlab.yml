@@ -1,5 +1,4 @@
 name: Java CI with Maven
-
 on:
   push:
     branches:
@@ -7,6 +6,10 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - .github/**
+      - src/**
+      - pom.xml
 jobs:
   compile:
     runs-on: ubuntu-latest
