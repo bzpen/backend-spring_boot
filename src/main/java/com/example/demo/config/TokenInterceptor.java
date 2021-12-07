@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
-*   token签名拦截器
-**
+ *  token签名拦截器
+ *  @author kaito kuroba
+ *  @Email 3118659412@qq.com
+ *  @since 2021/11/30
  */
 public class TokenInterceptor implements HandlerInterceptor {
 

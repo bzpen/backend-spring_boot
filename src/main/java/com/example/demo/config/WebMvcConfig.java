@@ -1,19 +1,32 @@
 package com.example.demo.config;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.config.annotation.*;
 
+import java.util.Arrays;
 
+
+/**
+ * @author kaito kuroba
+ * @Email 3118659412@qq.com
+ * @since 2021/11/30
+ */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
 //    public static final String REAL_IMG_PATH = "D:/Vue毕设项目/毕设后台/img/";
     public static final String REAL_IMG_PATH = "/root/java/java_backend/img/";
     public static final String VIRTUAL_IMG_PATH = "/static/spider_photo/";
-
+    /**
+     * 开放端口
+     */
     String[] openApi = {
+            "/",
+            "/index**",
             "/swagger-ui.html",
             "/v2/api-docs",
             "/v3/api-docs",

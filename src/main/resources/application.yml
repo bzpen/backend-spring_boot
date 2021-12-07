@@ -20,3 +20,6 @@ spring:
 mybatis:
   type-aliases-package: com.example.demo.entity
   mapper-locations: classpath:mapper/*Mapper.xml
+
+bzp:
+  api: test-api
