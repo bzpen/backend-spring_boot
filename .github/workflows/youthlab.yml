@@ -3,10 +3,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
-    paths:
       - .github/**
       - src/**
       - pom.xml
@@ -40,7 +36,7 @@ jobs:
       - name: 将 JAR 包部署到服务器
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: target/demo-0.0.1-SNAPSHOT.jar
+          local: target/demo-.*-SNAPSHOT.jar
           remote: /root/java/java_backend/github-actions-backend.jar
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
