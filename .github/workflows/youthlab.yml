@@ -6,7 +6,6 @@ on:
       - .github/**
       - src/**
       - pom.xml
-
 jobs:
   compile:
     runs-on: ubuntu-latest
