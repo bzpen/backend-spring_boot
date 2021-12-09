@@ -41,7 +41,7 @@ public class SecureUserService implements UserDetailsService {
             throw new UsernameNotFoundException("USERNAME NOT SUPPORT");
         }
         tbUser.setAuthorities(loadAuthorities(tbUser.getRoleId()));
-        tbUser.setRole(loadRoles(tbUser.getUserId()));
+        tbUser.setRole(loadRoles(tbUser.getRoleId()));
         return tbUser;
     }
 
@@ -49,7 +49,7 @@ public class SecureUserService implements UserDetailsService {
         Set<SimpleGrantedAuthority> authorities =new HashSet<>();
         TbRole role = loadRoles(roleId);
         if(role != null){
-            SimpleGrantedAuthority authority =new SimpleGrantedAuthority(role.getType());
+            SimpleGrantedAuthority authority =new SimpleGrantedAuthority(role.getName());
             authorities.add(authority);
         }
         return authorities;

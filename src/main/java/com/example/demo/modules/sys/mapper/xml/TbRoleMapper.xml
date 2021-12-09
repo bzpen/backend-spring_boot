@@ -4,7 +4,7 @@
 
     <select id="selectRoleByUserId" parameterType="string" resultType="com.example.demo.modules.sys.entity.TbRole">
         select * from tb_role
-        where  roleId= #{roleId} limit 1
+        where  id= #{roleId} limit 1
     </select>
 
 </mapper>

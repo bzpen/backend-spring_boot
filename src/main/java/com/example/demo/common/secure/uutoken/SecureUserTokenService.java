@@ -29,7 +29,7 @@ public class SecureUserTokenService {
      */
     public SecureUserToken createToken(SecureUser secureUser){
         SecureUserToken userToken=new SecureUserToken();
-        userToken.setToken(TokenUtil.create(secureUser.getUserId(),secureUser.getUsername()));
+        userToken.setToken(TokenUtil.create(secureUser.getId(),secureUser.getUsername()));
         userToken.setSecureUser(secureUser);
         return userToken;
     }

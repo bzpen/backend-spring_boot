@@ -42,7 +42,7 @@ public class MybatisPlusGeneratorUtil {
 
                 })
                 .packageConfig(builder -> builder.parent(Config.parent)
-                        .xml("com/example/demo/modules/sys/mapper/xml")
+                        .xml("modules/sys/mapper/xml")
                         .pathInfo(Collections.singletonMap(OutputFile.mapperXml, Config.mapperOutputDir))
                 )
                 .strategyConfig(builder -> builder.addInclude(tables)
@@ -65,9 +65,8 @@ public class MybatisPlusGeneratorUtil {
 
     public static void main(String[] args) {
         List<String> tables = new ArrayList<>();
-        // 按需要重新生成基础代码，会覆盖源文件，请谨慎操作！！！
-//        tables.add("tb_role");
-//        tables.add("tb_user");
+        tables.add("tb_role");
+        tables.add("tb_user");
         create(tables);
     }
 }

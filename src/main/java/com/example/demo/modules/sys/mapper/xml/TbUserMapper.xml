@@ -4,7 +4,7 @@
 
     <select id="selectByUsername" resultType="com.example.demo.modules.sys.entity.TbUser">
         select * from tb_user
-        where userName = #{username} limit 1
+        where username = #{username} limit 1
     </select>
 
 </mapper>

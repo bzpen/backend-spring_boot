@@ -27,18 +27,23 @@ import lombok.Setter;
 @ApiModel(value = "TbUser对象", description = "")
 public class TbUser extends SecureUser implements Serializable {
 
-    @TableField("userEmail")
-    private String userEmail;
+    @ApiModelProperty("邮箱")
+    @TableField("email")
+    private String email;
 
+    @ApiModelProperty("角色")
     @TableField("roleId")
     private String roleId;
 
+    @ApiModelProperty("最近登录时间")
     @TableField("upLoginTime")
     private LocalDateTime upLoginTime;
 
+    @ApiModelProperty("注册时间")
     @TableField("registTime")
     private LocalDateTime registTime;
 
+    @ApiModelProperty("头像")
     @TableField("userPhoto")
     private String userPhoto;
 

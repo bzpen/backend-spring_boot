@@ -26,11 +26,25 @@ public class TbRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "roleId", type = IdType.AUTO)
-    private Integer roleId;
+    @ApiModelProperty("权限编号")
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
-    @TableField("type")
-    private String type;
+    @ApiModelProperty("权限名")
+    @TableField("name")
+    private String name;
+
+    @ApiModelProperty("是否启用（1启用0关闭）")
+    @TableField("enable")
+    private Boolean enable;
+
+    @ApiModelProperty("逻辑删除（1删除0未删除）")
+    @TableField("deleted")
+    private Boolean deleted;
+
+    @ApiModelProperty("备注")
+    @TableField("remark")
+    private String remark;
 
 
 }

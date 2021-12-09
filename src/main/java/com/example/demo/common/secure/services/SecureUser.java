@@ -1,9 +1,11 @@
 package com.example.demo.common.secure.services;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.example.demo.common.web.base.domain.BaseDomain;
 import com.example.demo.modules.sys.entity.TbRole;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.security.core.CredentialsContainer;
@@ -25,22 +27,22 @@ import java.util.Set;
 public class SecureUser extends BaseDomain implements UserDetails {
 
     /**
-     * 编号
+     * 用户编号
      */
-    @TableId(value = "userId")
-    private String userId;
+    @TableId(value = "id")
+    private String id;
 
     /**
-     * 账号
+     * 用户名
      */
-    @TableField("userName")
-    private String userName;
+    @TableField("username")
+    private String username;
 
     /**
      * 密码
      */
-    @TableField("userPass")
-    private String userPass;
+    @TableField("password")
+    private String password;
 
     /**
      * 启用
@@ -73,12 +75,12 @@ public class SecureUser extends BaseDomain implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.userName;
+        return this.username;
     }
 
     @Override
     public String getPassword() {
-        return this.userPass;
+        return this.password;
     }
 
     @Override
