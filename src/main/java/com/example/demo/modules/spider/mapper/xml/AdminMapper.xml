@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.modules.spider.mapper.AdminMapper">
+    <select id="login_Admin" resultType="Admin">
+        select
+        *
+        from tb_admin
+        where
+        <choose>
+            <when test="admin_number != null">
+                admin_number = #{admin_number}
+            </when>
+            <when test="admin_id != null">
+                admin_id = #{admin_id}
+            </when>
+        </choose>
+    </select>
+
+
+    <insert id="add_Admin" parameterType="Admin">
+        insert into
+            tb_admin(admin_name,admin_number,admin_pass,admin_head,role)
+        values(#{admin_name},#{admin_number},#{admin_pass},#{admin_head},4)
+    </insert>
+
+    <select id="admin_List" resultType="Role_Admin">
+        SELECT tb_admin.*, tb_role.type
+        FROM
+        (tb_admin left join tb_role ON tb_role.roleId = tb_admin.role)
+    </select>
+
+    <delete id="delete_Admin" parameterType="Admin">
+        delete from tb_admin
+        where admin_id=#{admin_id}
+    </delete>
+
+
+
+</mapper>

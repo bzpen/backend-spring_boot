@@ -5,6 +5,6 @@ spring:
   profiles:
     active: dev
 
-mybatis:
-  type-aliases-package: com.example.demo.entity
-  mapper-locations: classpath:mapper/*Mapper.xml
+mybatis-plus:
+  type-aliases-package: com.example.demo.modules.spider.entity
+  mapper-locations: classpath*:com/example/demo/modules/**/xml/**.xml

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.modules.spider.mapper.SpiderMapper">
+
+    <select id="get" resultType="Spider">
+        select *
+        from tb_spider
+        where spiderId=#{spiderId}
+    </select>
+
+    <select id="gets" resultType="Spider">
+        SELECT *
+        FROM tb_spider
+    </select>
+
+    <update id="update" parameterType="Spider">
+        update tb_spider
+        set spiderName=#{spiderName},spiderPhoto=#{spiderPhoto},spiderSample=#{spiderSample},spiderDetails=#{spiderDetails}
+        where spiderId=#{spiderId}
+    </update>
+
+    <delete id="delete" parameterType="Spider">
+        delete from tb_spider
+        where spiderId=#{spiderId}
+    </delete>
+
+    <insert id="insert" parameterType="Spider">
+        insert into
+            tb_spider(spiderName,spiderPhoto,spiderSample,spiderDetails)
+        values (#{spiderName},#{spiderPhoto},#{spiderSample},#{spiderDetails})
+    </insert>
+
+    <select id="get_name" resultType="Spider">
+        select * from tb_spider
+        where spiderName=#{spiderName}
+    </select>
+
+</mapper>
