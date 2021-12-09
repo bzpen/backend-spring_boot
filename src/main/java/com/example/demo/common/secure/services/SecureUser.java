@@ -1,0 +1,104 @@
+package com.example.demo.common.secure.services;
+
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.example.demo.common.web.base.domain.BaseDomain;
+import com.example.demo.modules.sys.entity.TbRole;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.security.core.CredentialsContainer;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * 基础 UserInfo 实体，为安全验证提供支持的公共属性
+ *
+ * @author kaito kuroba
+ * @date 2021/12/8
+ */
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class SecureUser extends BaseDomain implements UserDetails {
+
+    /**
+     * 编号
+     */
+    @TableId(value = "userId")
+    private String userId;
+
+    /**
+     * 账号
+     */
+    @TableField("userName")
+    private String userName;
+
+    /**
+     * 密码
+     */
+    @TableField("userPass")
+    private String userPass;
+
+    /**
+     * 启用
+     */
+    @TableField(value = "enable")
+    private Boolean enable;
+
+    /**
+     * 锁定
+     */
+    @TableField(value = "locked")
+    private Boolean locked;
+
+    /**
+     * 角色
+     */
+    @TableField(exist = false)
+    private TbRole role;
+
+    /**
+     * 权限
+     */
+    @TableField(exist = false)
+    private Set<? extends GrantedAuthority> authorities;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.authorities;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.userName;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.userPass;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !this.locked;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.enable;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+}
