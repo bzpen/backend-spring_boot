@@ -44,7 +44,7 @@ public class AdminServiceImpl implements AdminService {
                 Admin result = adminMapper.login_Admin(admin);
                 if(result!=null ){
                     state = "true";
-                    msg = result.getAdmin_name() + ",检测到你已登录！";
+                    msg = result.getName() + ",检测到你已登录！";
                     token = TokenUtil.sign(admin);
                 }else{
                     state = "false";
@@ -77,10 +77,10 @@ public class AdminServiceImpl implements AdminService {
             result.clear();
             Admin result = adminMapper.login_Admin(admin);
             if(result!=null ){
-                admin.setAdmin_pass(MD5Utils.code(admin.getAdmin_pass()));
-                if(admin.getAdmin_pass().equalsIgnoreCase(result.getAdmin_pass())){
+                admin.setPassword(MD5Utils.code(admin.getPassword()));
+                if(admin.getPassword().equalsIgnoreCase(result.getPassword())){
                     state = "true";
-                    msg = result.getAdmin_name() + "欢迎登录！";
+                    msg = result.getName() + "欢迎登录！";
                     token = TokenUtil.sign(admin);
                 }else{
                     state = "false";
@@ -112,7 +112,7 @@ public class AdminServiceImpl implements AdminService {
         try {
             Admin admin1 = adminMapper.login_Admin(admin);
             if(admin1 == null){
-                admin.setAdmin_pass(MD5Utils.code(admin.getAdmin_pass()));
+                admin.setPassword(MD5Utils.code(admin.getPassword()));
                 int result = adminMapper.add_Admin(admin);
                 if(result == 1 ){
                     state = "true";

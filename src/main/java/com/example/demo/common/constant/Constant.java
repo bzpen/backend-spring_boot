@@ -20,6 +20,7 @@ public interface Constant {
          */
         String[] openApi = {
                 //security
+                "/admin/login",
                 "/api/login",
                 "/api/logout",
                 "/login",
