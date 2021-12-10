@@ -37,6 +37,11 @@ public class Result<T> implements Serializable {
     private Object data;
 
     /**
+     * 权鉴
+     */
+    private String token;
+
+    /**
      * 成 功 操 作
      */
     public static Result success() {
@@ -71,6 +76,14 @@ public class Result<T> implements Serializable {
         return success(code, message, null);
     }
 
+    /**
+     * 成 功 操 作, 返 回 token
+     */
+    public static Result success(ResultCode resultCode, String token) {
+        Result result = success(resultCode.getCode(), resultCode.getMessage());
+        result.setToken(token);
+        return result;
+    }
     /**
      * 成 功 操 作, 携 带 自 定义 状 态 码, 消 息 和 数 据
      */

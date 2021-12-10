@@ -24,8 +24,4 @@ public class SecureUserToken implements Serializable {
      */
     private SecureUser secureUser;
 
-    /**
-     * 创建时间
-     */
-    private LocalDateTime createTime = LocalDateTime.now();
 }
