@@ -25,7 +25,7 @@ public class TokenUtil {
             Date expiresAt = new Date(System.currentTimeMillis() + EXPIRE_TIME);
             token = JWT.create()
                     .withIssuer("auth0")
-                    .withClaim("adminNumber", admin.getAdmin_number())
+                    .withClaim("adminNumber", admin.getNumber())
                     .withExpiresAt(expiresAt)
                     // 使用了HMAC256加密算法。
                     .sign(Algorithm.HMAC256(TOKEN_SECRET));
@@ -68,7 +68,7 @@ public class TokenUtil {
                 Admin admin=new Admin();
                 JWTVerifier verifier = JWT.require(Algorithm.HMAC256(TOKEN_SECRET)).withIssuer("auth0").build();
                 DecodedJWT jwt = verifier.verify(token);
-                admin.setAdmin_number(jwt.getClaim("adminNumber").asString());
+                admin.setNumber(jwt.getClaim("adminNumber").asString());
                 return admin;
             }else{
                 return null;

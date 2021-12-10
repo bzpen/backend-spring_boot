@@ -33,10 +33,9 @@ public class SecureLoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         SecureUser secureUser = (SecureUser) authentication.getPrincipal();
         SecureUserToken userToken = secureUserTokenService.createToken(secureUser);
-        String tokenKey = secureUserTokenService.saveToken(userToken);
-        String tokenValue = userToken.getToken();
+        String token = secureUserTokenService.saveToken(userToken);
 
-        ServletUtil.writeJson(Result.success(ResultCode.LOGIN_SUCCESS.code(),tokenKey,tokenValue));
+        ServletUtil.writeJson(Result.success(ResultCode.LOGIN_SUCCESS,token));
     }
 
     @Override

@@ -37,11 +37,11 @@ public class TbUser extends SecureUser implements Serializable {
 
     @ApiModelProperty("最近登录时间")
     @TableField("upLoginTime")
-    private LocalDateTime upLoginTime;
+    private String upLoginTime;
 
     @ApiModelProperty("注册时间")
     @TableField("registTime")
-    private LocalDateTime registTime;
+    private String registTime;
 
     @ApiModelProperty("头像")
     @TableField("userPhoto")
