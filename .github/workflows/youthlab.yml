@@ -28,7 +28,7 @@ jobs:
       - name: Generate the package
         run: mvn -B package --file pom.xml -Dmaven.test.skip=true
       - name: 重命名文件
-        run: mv mv target/*.jar target/kaito-kurobo-SNAPSHOT.jar
+        run: mv target/*.jar target/kaito-kurobo-SNAPSHOT.jar
       - name: 将 JAR 包部署到服务器
         uses: garygrossgarten/github-action-scp@release
         with:
@@ -42,7 +42,7 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: | # 命令中的 & 表示在后台运行进程
-            nohup java -jar /root/java/java_backend/github-actions-backend.jar >/root/java/java_backend/log.log &
+            nohup java -jar /root/java/java_backend/kaito-kurobo-backend.jar >/root/java/java_backend/log.log &
           host: ${{ secrets.HOST }}
           user: ${{ secrets.SSH_USER }}
           pass: ${{ secrets.SSH_PASSWORD }}
