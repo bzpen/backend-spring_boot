@@ -1,11 +1,13 @@
 package com.example.demo.common.config;
 
 import com.example.demo.common.constant.Constant;
+import com.example.demo.common.email.sucrity.authentication.EmailAuthenticationFilter;
+import com.example.demo.common.email.sucrity.authentication.EmailAuthenticationProvider;
 import com.example.demo.common.secure.process.*;
 import com.example.demo.common.secure.uutoken.SecureUserTokenSupport;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -125,5 +127,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors();
     }
 
+    @Bean
+    @Override
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
+    }
+
+
+    @Bean
+    public EmailAuthenticationFilter emailCodeAuthenticationFilter() {
+        EmailAuthenticationFilter emailCodeAuthenticationFilter = new EmailAuthenticationFilter();
+        emailCodeAuthenticationFilter.setAuthenticationSuccessHandler(secureAuthenticationSuccessHandler);
+        emailCodeAuthenticationFilter.setAuthenticationFailureHandler(secureAuthenticationFailureHandler);
+        return emailCodeAuthenticationFilter;
+    }
+
+    @Bean
+    public EmailAuthenticationProvider emailCodeAuthenticationProvider() {
+        return new EmailAuthenticationProvider();
+    }
 }
 

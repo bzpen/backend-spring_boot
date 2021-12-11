@@ -76,4 +76,6 @@ public class UserController {
     public HashMap<String,Object> down_User(User user){
         return userService.down_User(user);
     }
+
+
 }
