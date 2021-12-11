@@ -19,11 +19,14 @@ public interface Constant {
          * 开放接口列表
          */
         String[] openApi = {
+                //email
+                "/email/**",
                 //security
                 "/admin/login",
                 "/api/login",
                 "/api/logout",
                 "/login",
+                "/user/email",
                 //主页
                 "/",
                 "/index**",
@@ -53,6 +56,11 @@ public interface Constant {
          * Token 过期时间
          */
         long TOKEN_EXPIRATION = 1000 * 60 * 30;
+
+        /**
+         * 验证码 过期时间
+         */
+        long CODE_EXPIRATION = 1 * 60 * 5;
     }
 
     /**
@@ -62,7 +70,7 @@ public interface Constant {
         /**
          * 主页消息
          */
-        String INDEX_MSG = "Tea traceability backend is running... <a href='/swagger-ui/'>Docs</a>";
+        String INDEX_MSG = "Graduation design backend is running... <a href='/swagger-ui/'>Docs</a>";
     }
 
     /**
@@ -84,7 +92,7 @@ public interface Constant {
         /**
          * Access Token 密钥
          */
-        String SECRET = "YOUTH-LAB-SECRET";
+        String SECRET = "KAITO-KUROBO-SECRET";
 
         /**
          * Access Token 前缀
@@ -94,7 +102,7 @@ public interface Constant {
         /**
          * Access Token 发布者
          */
-        String ISSUER = "Youth-Lab";
+        String ISSUER = "Kaito-Kurobo";
 
         /**
          * Http Header Token 请求头
@@ -105,5 +113,27 @@ public interface Constant {
          * Token 存储前缀
          */
         String TOKEN_NAME_PREFIX = "TOKEN-";
+    }
+
+    interface Email{
+
+        /**
+         * Code 前缀
+         */
+        String CODE_NAME_PREFIX = "CODE-";
+        /**
+         * 邮件标题
+         */
+        String EMAIL_HEADER = "蛛毒数据网站系统";
+
+        /**
+         * code 前文本
+         */
+        String EMAIL_FONT = "【蛛毒数据库系统】您的邮箱验证码为：";
+
+        /**
+         * code 后文本
+         */
+        String EMAIL_REAR = "，有效时间为5分钟(若非本人操作，可忽略该条邮件)";
     }
 }

@@ -4,7 +4,10 @@ import com.example.demo.modules.sys.entity.TbUser;
 import com.example.demo.modules.sys.mapper.TbUserMapper;
 import com.example.demo.modules.sys.service.ITbUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -17,4 +20,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class TbUserServiceImpl extends ServiceImpl<TbUserMapper, TbUser> implements ITbUserService {
 
+    @Resource
+    TbUserMapper tbUserMapper;
+
+    @Override
+    public UserDetails getByEmail(String email) {
+        return tbUserMapper.selectByEmail(email);
+    }
 }

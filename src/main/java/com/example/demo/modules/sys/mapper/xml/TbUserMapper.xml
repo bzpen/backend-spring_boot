@@ -7,4 +7,9 @@
         where username = #{username} limit 1
     </select>
 
+    <select id="selectByEmail" resultType="com.example.demo.modules.sys.entity.TbUser">
+        select * from tb_user
+        where email = #{email}
+    </select>
+
 </mapper>
