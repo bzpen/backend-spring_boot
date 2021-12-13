@@ -4,6 +4,15 @@ spring:
     host: smtp.qq.com
     username: 3118659412@qq.com
     password: iecshggikvevdfic
+    port: 465
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          ssl: true
+          auth: true
   datasource:
     username: root
     password: bzp510719
