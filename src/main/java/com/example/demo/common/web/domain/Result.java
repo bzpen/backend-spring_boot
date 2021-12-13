@@ -48,6 +48,7 @@ public class Result<T> implements Serializable {
         return success(null);
     }
 
+
     /**
      * 成 功 操 作 , 携 带 数 据
      */

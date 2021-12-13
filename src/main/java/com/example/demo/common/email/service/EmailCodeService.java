@@ -1,6 +1,7 @@
 package com.example.demo.common.email.service;
 
 import com.example.demo.common.email.entity.Email;
+import com.example.demo.common.web.domain.Result;
 import com.example.demo.common.web.exception.token.TokenException;
 
 /**
@@ -15,7 +16,7 @@ public interface EmailCodeService {
     /**
      * 创建 code
      */
-    public Email createCode(Email email);
+    public void createCode(Email email);
 
     /**
      * 存储 code
@@ -36,4 +37,6 @@ public interface EmailCodeService {
      * 销毁 code
      */
     public void destroyCode(String key);
+
+    public Result check(Email email);
 }

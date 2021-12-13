@@ -24,6 +24,11 @@ public class TbUserServiceImpl extends ServiceImpl<TbUserMapper, TbUser> impleme
     TbUserMapper tbUserMapper;
 
     @Override
+    public UserDetails selectByUsername(String username) {
+        return tbUserMapper.selectByUsername(username);
+    }
+
+    @Override
     public UserDetails getByEmail(String email) {
         return tbUserMapper.selectByEmail(email);
     }

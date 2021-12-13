@@ -1,9 +1,12 @@
 package com.example.demo.modules.spider.service;
 
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.User;
+import com.example.demo.modules.sys.entity.TbUser;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,7 +18,8 @@ import java.util.List;
  * @author kaito kuroba
  * @since 2021-11-15
  */
-public interface UserService {
+public interface UserService extends IService<User> {
+
     /**
      * 获取用户列表
      * @return
@@ -50,5 +54,10 @@ public interface UserService {
      */
     HashMap<String,Object> down_User(User user);
 
-
+    /**
+     * 检查用户名是否重复
+     * @param username
+     * @return
+     */
+    Result check_username(String username);
 }

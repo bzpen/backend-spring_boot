@@ -21,6 +21,7 @@ public interface Constant {
         String[] openApi = {
                 //email
                 "/email/**",
+                "/user/**",
                 //security
                 "/admin/login",
                 "/api/login",

@@ -1,12 +1,19 @@
 package com.example.demo.modules.spider.service.Impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.User;
 import com.example.demo.modules.spider.mapper.UserMapper;
 import com.example.demo.modules.spider.service.UserService;
+import com.example.demo.modules.sys.service.ITbUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.xml.crypto.Data;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,10 +26,16 @@ import java.util.List;
  * @since 2021-11-15
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
-    @Autowired
+    @Resource
     UserMapper userMapper;
+
+    @Resource
+    ITbUserService iTbUserService;
+
+    @Resource
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     private HashMap<String,Object> result=new HashMap<>();
 
@@ -158,5 +171,33 @@ public class UserServiceImpl implements UserService {
             System.out.println(e.getMessage());
         }
         return Result.failure("数据获取失败！");
+    }
+
+    /**
+     * 注 册 新 用 户
+     * @param entity
+     * @return
+     */
+    @Override
+    public boolean save(User entity) {
+        User user= User.builder()
+                .id(null)
+                .deleted(false)
+                .locked(false)
+                .enable(true)
+                .roleId(2)
+                .password(bCryptPasswordEncoder.encode(entity.getPassword()))
+                .email(entity.getEmail())
+                .username(entity.getUsername())
+                .userPhoto("/root/java/java_backend/user/head.jpg")
+                .build();
+        return super.save(user);
+    }
+
+    @Override
+    public Result check_username(String username) {
+        if(iTbUserService.selectByUsername(username)!=null)
+            return Result.success();
+        return Result.failure();
     }
 }

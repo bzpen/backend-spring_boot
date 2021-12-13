@@ -4,14 +4,15 @@ package com.example.demo.modules.spider.controller;
 import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.User;
 import com.example.demo.modules.spider.service.UserService;
+import com.example.demo.modules.sys.entity.TbUser;
+import com.example.demo.modules.sys.service.ITbUserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,13 +25,12 @@ import java.util.List;
  * @since 2021-11-15
  */
 
-@ResponseBody
-@Controller
+@RestController
 @RequestMapping("/user")
-@Api(tags = "用户管理接口")
+@Api(tags = "用户接口")
 public class UserController {
 
-    @Autowired
+    @Resource
     UserService userService;
 
     /**
@@ -78,4 +78,26 @@ public class UserController {
     }
 
 
+    /**
+     * 用户注册
+     * @param user
+     * @return
+     */
+    @PostMapping("add")
+    @ApiOperation("用户注册接口")
+    public Result save(User user){
+        return Result.success(userService.save(user));
+    }
+
+    /**
+     * 用户名验证
+     *
+     * @param username
+     * @return
+     */
+    @GetMapping("check")
+    @ApiOperation("检查用户名是否存在")
+    public Result check(String username){
+        return userService.check_username(username);
+    }
 }

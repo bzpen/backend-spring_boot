@@ -1,4 +1,4 @@
-package com.example.demo.common.email.sucrity.authentication;
+package com.example.demo.common.email.sucrity.authentication.user;
 
 import com.example.demo.common.email.service.EmailCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
