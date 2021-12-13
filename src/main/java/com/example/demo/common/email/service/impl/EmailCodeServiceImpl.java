@@ -1,14 +1,21 @@
 package com.example.demo.common.email.service.impl;
 
+import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.example.demo.common.constant.Constant;
 import com.example.demo.common.email.entity.Email;
 import com.example.demo.common.email.service.EmailCodeService;
 import com.example.demo.common.util.EmailCodeUtil;
+import com.example.demo.common.web.domain.Result;
 import com.example.demo.common.web.exception.token.TokenException;
+import com.example.demo.modules.sys.entity.TbUser;
+import com.example.demo.modules.sys.service.ITbUserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,21 +35,23 @@ public class EmailCodeServiceImpl implements EmailCodeService {
     @Resource
     private JavaMailSender mailSender;
 
+    @Resource
+    private ITbUserService iTbUserService;
+
     @Value("${spring.mail.username}")
     private String from;// 发送者
 
     @Override
-    public Email createCode(Email email) {
+    public void createCode(Email email) {
         email.setCode(EmailCodeUtil.creatCode());
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(from);
-        message.setCc(from);
         message.setTo(email.getUserEmail());
         message.setSubject(Constant.Email.EMAIL_HEADER);
         message.setText(Constant.Email.EMAIL_FONT + email.getCode() + Constant.Email.EMAIL_REAR);
         System.out.println(email.toString());
         mailSender.send(message);
-        return this.saveCode(email);
+        this.saveCode(email);
     }
 
     @Override
@@ -64,5 +73,14 @@ public class EmailCodeServiceImpl implements EmailCodeService {
     @Override
     public void destroyCode(String key) {
         redisTemplate.delete(Constant.Email.CODE_NAME_PREFIX + key);
+    }
+
+    @Override
+    public Result check(Email email) {
+        UserDetails userDetails = iTbUserService.getByEmail(email.getUserEmail());
+        if(userDetails != null){
+            return Result.success();
+        }
+        return Result.failure();
     }
 }

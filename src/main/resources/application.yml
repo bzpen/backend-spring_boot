@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: pro
+    active: dev
   ## 邮件
   mail:
     ## 协议

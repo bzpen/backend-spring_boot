@@ -1,4 +1,4 @@
-package com.example.demo.common.email.sucrity.authentication;
+package com.example.demo.common.email.sucrity.authentication.email;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;

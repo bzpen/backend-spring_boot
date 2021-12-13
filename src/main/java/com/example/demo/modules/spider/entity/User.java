@@ -5,93 +5,65 @@ package com.example.demo.modules.spider.entity;
  * @Email 3118659412@qq.com
  * @since 2021/11/15
  */
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.models.auth.In;
+import lombok.Builder;
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
+@Builder
+@TableName("tb_user")
 public class User {
-    private Integer userId;        //id标识
-    private String userName;   //用户名
-    private String userEmail;  //用户邮箱
-    private String userPass;   //密码
-    private int roleId;     //用户角色
-    private Date upLoginTime;  //用户最近登录时间
+
+    @ApiModelProperty("用户编号")
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+
+    @ApiModelProperty("用户名")
+    @TableField(value = "username")
+    private String username;
+
+    @ApiModelProperty("用户邮箱")
+    @TableField(value = "email")
+    private String email;
+
+    @ApiModelProperty("密码")
+    @TableField(value = "password")
+    private String password;
+
+    @ApiModelProperty("用户角色")
+    @TableField(value = "roleId")
+    private Integer roleId;
+
+    @ApiModelProperty("用户最近登录时间")
+    @TableField(value = "upLoginTime")
+    private Date upLoginTime;
+
+    @ApiModelProperty("用户注册时间")
+    @TableField(value = "registTime")
     private String registTime;
+
+    @ApiModelProperty("用户头头像")
+    @TableField(value = "userPhoto")
     private String userPhoto;
 
-    public String getUserPhoto() {
-        return userPhoto;
-    }
+    @ApiModelProperty("启用")
+    @TableField(value = "enable")
+    private Boolean enable;
 
-    public void setUserPhoto(String userPhoto) {
-        this.userPhoto = userPhoto;
-    }
+    @ApiModelProperty("锁定")
+    @TableField(value = "locked")
+    private Boolean locked;
 
-    public String getRegistTime() {
-        return registTime;
-    }
+    @ApiModelProperty("逻辑删除")
+    @TableField(value = "deleted")
+    private Boolean deleted;
 
-    public void setRegistTime(String registTime) {
-        this.registTime = registTime;
-    }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Date getUpLoginTime() {
-        return upLoginTime;
-    }
-
-    public void setUpLoginTime(Date upLoginTime) {
-        this.upLoginTime = upLoginTime;
-    }
-
-    public int getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public String getUserPass() {
-        return userPass;
-    }
-
-    public void setUserPass(String userPass) {
-        this.userPass = userPass;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", userPass='" + userPass + '\'' +
-                ", roleId=" + roleId +
-                ", upLoginTime=" + upLoginTime +
-                ", registTime='" + registTime + '\'' +
-                ", userPhoto='" + userPhoto + '\'' +
-                '}';
-    }
 }

@@ -1,6 +1,8 @@
 package com.example.demo.modules.spider.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.demo.modules.spider.entity.User;
+import com.example.demo.modules.sys.entity.TbRole;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
  * @since 2021-11-15
  */
 @Mapper
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<User> {
 
 //    获取用户列表
     List<User> user_List();

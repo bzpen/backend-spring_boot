@@ -29,6 +29,12 @@ public class EmailController {
 
     @GetMapping("get")
     public Result getEmailCode(Email email){
-        return Result.success(emailCodeService.createCode(email));
+        emailCodeService.createCode(email);
+        return Result.success("验证发送成功，请注意查收！");
+    }
+
+    @GetMapping("check")
+    public Result check(Email email){
+        return emailCodeService.check(email);
     }
 }

@@ -1,8 +1,8 @@
 package com.example.demo.common.config;
 
 import com.example.demo.common.constant.Constant;
-import com.example.demo.common.email.sucrity.authentication.EmailAuthenticationFilter;
-import com.example.demo.common.email.sucrity.authentication.EmailAuthenticationProvider;
+import com.example.demo.common.email.sucrity.authentication.email.EmailAuthenticationFilter;
+import com.example.demo.common.email.sucrity.authentication.email.EmailAuthenticationProvider;
 import com.example.demo.common.secure.process.*;
 import com.example.demo.common.secure.uutoken.SecureUserTokenSupport;
 import org.springframework.context.annotation.Bean;
@@ -133,8 +133,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManager();
     }
 
-
     @Bean
+
     public EmailAuthenticationFilter emailCodeAuthenticationFilter() {
         EmailAuthenticationFilter emailCodeAuthenticationFilter = new EmailAuthenticationFilter();
         emailCodeAuthenticationFilter.setAuthenticationSuccessHandler(secureAuthenticationSuccessHandler);
