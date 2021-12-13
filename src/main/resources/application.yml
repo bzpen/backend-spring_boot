@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: dev
+    active: pro
 
 mybatis-plus:
   type-aliases-package: com.example.demo.modules.spider.entity
