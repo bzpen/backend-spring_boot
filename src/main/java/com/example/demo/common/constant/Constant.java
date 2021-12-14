@@ -19,6 +19,9 @@ public interface Constant {
          * 开放接口列表
          */
         String[] openApi = {
+                //临时开放
+                "/view-sample/**",
+
                 //email
                 "/email/**",
                 "/user/**",

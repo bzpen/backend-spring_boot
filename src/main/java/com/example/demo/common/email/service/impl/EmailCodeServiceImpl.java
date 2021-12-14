@@ -1,15 +1,11 @@
 package com.example.demo.common.email.service.impl;
 
-import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.example.demo.common.constant.Constant;
 import com.example.demo.common.email.entity.Email;
 import com.example.demo.common.email.service.EmailCodeService;
 import com.example.demo.common.util.EmailCodeUtil;
 import com.example.demo.common.web.domain.Result;
 import com.example.demo.common.web.exception.token.TokenException;
-import com.example.demo.modules.sys.entity.TbUser;
 import com.example.demo.modules.sys.service.ITbUserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -79,8 +75,18 @@ public class EmailCodeServiceImpl implements EmailCodeService {
     public Result check(Email email) {
         UserDetails userDetails = iTbUserService.getByEmail(email.getUserEmail());
         if(userDetails != null){
+            return Result.success("邮箱已注册");
+        }
+        return Result.failure("邮箱未注册");
+    }
+
+    @Override
+    public Result checkCode(Email email) {
+        String code = this.taskCode(email.getUserEmail());
+        if(email.getCode().equals(code)){
+            this.destroyCode(email.getUserEmail());
             return Result.success();
         }
-        return Result.failure();
+        return Result.failure("验证码错误！");
     }
 }

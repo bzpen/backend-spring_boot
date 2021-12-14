@@ -4,6 +4,7 @@ import com.example.demo.common.email.entity.Email;
 import com.example.demo.common.email.service.EmailCodeService;
 import com.example.demo.common.web.domain.Result;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,13 +29,21 @@ public class EmailController {
     EmailCodeService emailCodeService;
 
     @GetMapping("get")
+    @ApiOperation("获取邮箱验证码")
     public Result getEmailCode(Email email){
         emailCodeService.createCode(email);
         return Result.success("验证发送成功，请注意查收！");
     }
 
     @GetMapping("check")
+    @ApiOperation("邮箱检测")
     public Result check(Email email){
         return emailCodeService.check(email);
+    }
+
+    @GetMapping("checkCode")
+    @ApiOperation("邮箱验证码检测")
+    public Result checkCode(Email email){
+        return emailCodeService.checkCode(email);
     }
 }

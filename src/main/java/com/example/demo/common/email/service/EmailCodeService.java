@@ -16,27 +16,35 @@ public interface EmailCodeService {
     /**
      * 创建 code
      */
-    public void createCode(Email email);
+    void createCode(Email email);
 
     /**
      * 存储 code
      */
-    public Email saveCode(Email email);
+    Email saveCode(Email email);
 
     /**
      * 验证 code
      */
-    public Email verifyCode(String key) throws TokenException;
+    Email verifyCode(String key) throws TokenException;
 
     /**
      * 获取 code
      */
-    public String taskCode(String key);
+    String taskCode(String key);
 
     /**
      * 销毁 code
      */
-    public void destroyCode(String key);
+    void destroyCode(String key);
 
-    public Result check(Email email);
+    /**
+     * 检查邮箱
+     */
+    Result check(Email email);
+
+    /**
+     * 检测验证码
+     */
+    Result checkCode(Email email);
 }

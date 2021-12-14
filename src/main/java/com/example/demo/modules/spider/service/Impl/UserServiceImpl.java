@@ -197,7 +197,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public Result check_username(String username) {
         if(iTbUserService.selectByUsername(username)!=null)
-            return Result.success();
-        return Result.failure();
+            return Result.success("用户名已注册");
+        return Result.failure("用户名未注册");
     }
 }

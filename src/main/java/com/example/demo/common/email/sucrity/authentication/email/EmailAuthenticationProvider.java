@@ -32,9 +32,11 @@ public class EmailAuthenticationProvider implements AuthenticationProvider {
         if (!supports(authentication.getClass())) {
             return null;
         }
+
         EmailAuthenticationToken token = (EmailAuthenticationToken) authentication;
         // 从数据库查询 数据
         UserDetails user = tbUserService.getByEmail((String) token.getPrincipal());
+
 
         System.out.println(token.getPrincipal());
         if (user == null) {
@@ -46,9 +48,9 @@ public class EmailAuthenticationProvider implements AuthenticationProvider {
                 new EmailAuthenticationToken(user, user.getAuthorities());
 
         result.setDetails(token.getDetails());
+
         return result;
     }
-
 
     @Override
     public boolean supports(Class<?> aClass) {
