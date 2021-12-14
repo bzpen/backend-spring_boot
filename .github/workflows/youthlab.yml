@@ -42,6 +42,7 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: | # 命令中的 & 表示在后台运行进程
+            kill -9 `lsof -ti:8083`
             nohup java -jar /root/java/java_backend/kaito-kurobo-backend.jar >/root/java/java_backend/log.log &
           host: ${{ secrets.HOST }}
           user: ${{ secrets.SSH_USER }}
