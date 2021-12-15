@@ -21,7 +21,6 @@ public interface Constant {
         String[] openApi = {
                 //临时开放
 //                "/view-sample/**",
-
                 //email
                 "/email/**",
                 "/user/**",
@@ -43,7 +42,9 @@ public interface Constant {
                 "/swagger-resources/configuration/**",
                 "/swagger-ui/**",
                 "/swagger-ui/",
-                "/admin/**", "/static/**", "/spider/image",
+                "/admin/**",
+                "/static/**/**/**",
+                "/spider/image",
         };
 
         /**
