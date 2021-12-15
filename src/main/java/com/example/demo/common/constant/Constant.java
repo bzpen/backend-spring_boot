@@ -20,7 +20,7 @@ public interface Constant {
          */
         String[] openApi = {
                 //临时开放
-                "/view-sample/**",
+//                "/view-sample/**",
 
                 //email
                 "/email/**",

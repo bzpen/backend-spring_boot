@@ -1,5 +1,6 @@
 package com.example.demo.common.email.sucrity.authentication.user;
 
+import com.example.demo.modules.sys.mapper.TbUserMapper;
 import com.example.demo.modules.sys.service.ITbUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -8,6 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.annotation.Resource;
+
 /**
  * 邮件验证过滤器
  *
@@ -15,10 +18,10 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @Email 3118659412@qq.com
  * @since 2021/12/11
  */
-public class EmailAuthenticationProvider implements AuthenticationProvider {
+public class UserAuthenticationProvider implements AuthenticationProvider {
 
-    @Autowired
-    ITbUserService tbUserService;
+    @Resource
+    private TbUserMapper tbUserMapper;
 
     /**
      * 认证
@@ -32,9 +35,9 @@ public class EmailAuthenticationProvider implements AuthenticationProvider {
         if (!supports(authentication.getClass())) {
             return null;
         }
-        EmailAuthenticationToken token = (EmailAuthenticationToken) authentication;
+        UserAuthenticationToken token = (UserAuthenticationToken) authentication;
         // 从数据库查询 数据
-        UserDetails user = tbUserService.getByEmail((String) token.getPrincipal());
+        UserDetails user = tbUserMapper.selectByUsername((String) token.getPrincipal());
 
         System.out.println(token.getPrincipal());
         if (user == null) {
@@ -42,8 +45,8 @@ public class EmailAuthenticationProvider implements AuthenticationProvider {
         }
         System.out.println(user.getAuthorities());
 
-        EmailAuthenticationToken result =
-                new EmailAuthenticationToken(user, user.getAuthorities());
+        UserAuthenticationToken result =
+                new UserAuthenticationToken(user, user.getAuthorities());
 
         result.setDetails(token.getDetails());
         return result;
@@ -52,6 +55,6 @@ public class EmailAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return EmailAuthenticationToken.class.isAssignableFrom(aClass);
+        return UserAuthenticationToken.class.isAssignableFrom(aClass);
     }
 }

@@ -3,6 +3,8 @@ package com.example.demo.modules.spider.service;
 import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.Sample;
 
+import java.io.IOException;
+
 /**
  * @author kaito kuroba
  * @Email 3118659412@qq.com
@@ -42,5 +44,5 @@ public interface SampleService {
      * @param sample
      * @return
      */
-    Result add(Sample sample);
+    Result add(Sample sample) throws IOException;
 }

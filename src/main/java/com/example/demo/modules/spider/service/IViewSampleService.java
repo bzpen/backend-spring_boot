@@ -5,6 +5,8 @@ import com.example.demo.modules.spider.entity.ViewSample;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.demo.modules.spider.param.PageSampleRequest;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * <p>
  * VIEW 服务类
@@ -16,10 +18,20 @@ import com.example.demo.modules.spider.param.PageSampleRequest;
 public interface IViewSampleService extends IService<ViewSample> {
 
     /**
-     *  查询分页实现
+     *  基因序列查询分页实现
      *
      * @param request
      * @return
      */
     PageResponse<ViewSample> list(PageSampleRequest request);
+
+
+    /**
+     * 基因序列个人上传列表分页实现
+     *
+     * @param request
+     * @return
+     */
+    PageResponse<ViewSample> list_user(HttpServletRequest request,PageSampleRequest pageRequest);
+
 }

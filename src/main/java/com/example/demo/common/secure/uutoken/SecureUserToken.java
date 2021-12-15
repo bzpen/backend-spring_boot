@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 用户 Token 封装实体
@@ -24,4 +25,8 @@ public class SecureUserToken implements Serializable {
      */
     private SecureUser secureUser;
 
+    /**
+     * 创建时间
+     */
+    private Date createTime = new Date();
 }

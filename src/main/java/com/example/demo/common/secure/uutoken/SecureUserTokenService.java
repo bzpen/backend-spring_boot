@@ -1,14 +1,16 @@
 package com.example.demo.common.secure.uutoken;
 
-import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.example.demo.common.constant.Constant;
 import com.example.demo.common.secure.services.SecureUser;
 import com.example.demo.common.util.TokenUtil;
 import com.example.demo.common.web.exception.token.TokenException;
+import com.example.demo.common.web.exception.token.TokenExpiredException;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -38,8 +40,10 @@ public class SecureUserTokenService {
      * 存储 token
      */
     public String saveToken(SecureUserToken userToken){
-        String key = String.valueOf((UUID.randomUUID()));
-        redisTemplate.opsForValue().set(Constant.Token.TOKEN_NAME_PREFIX+ key,userToken,Constant.Security.TOKEN_EXPIRATION, TimeUnit.SECONDS);
+
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String key = String.valueOf(bCryptPasswordEncoder.encode(userToken.getSecureUser().getUsername()));
+        redisTemplate.opsForValue().set(Constant.Token.TOKEN_NAME_PREFIX + key,userToken,Constant.Security.TOKEN_EXPIRATION, TimeUnit.SECONDS);
         return key;
     }
 
@@ -57,7 +61,7 @@ public class SecureUserTokenService {
      * 获取 token
      */
     public SecureUserToken taskToken(String key){
-        return redisTemplate.opsForValue().get(Constant.Token.TOKEN_NAME_PREFIX+key);
+        return redisTemplate.opsForValue().get(Constant.Token.TOKEN_NAME_PREFIX + key);
     }
 
     /**

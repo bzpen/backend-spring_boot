@@ -24,7 +24,7 @@ import java.util.Set;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SecureUser extends BaseDomain implements UserDetails {
+public class SecureUser extends BaseDomain implements UserDetails,CredentialsContainer {
 
     /**
      * 用户编号
@@ -55,6 +55,12 @@ public class SecureUser extends BaseDomain implements UserDetails {
      */
     @TableField(value = "locked")
     private Boolean locked;
+
+    /**
+     * 头像
+     */
+    @TableField("userPhoto")
+    private String userPhoto;
 
     /**
      * 角色
@@ -101,6 +107,11 @@ public class SecureUser extends BaseDomain implements UserDetails {
     @Override
     public boolean isAccountNonExpired() {
         return true;
+    }
+
+    @Override
+    public void eraseCredentials() {
+        this.password = null;
     }
 
 }

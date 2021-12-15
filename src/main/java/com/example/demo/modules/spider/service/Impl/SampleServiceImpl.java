@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -81,23 +82,19 @@ public class SampleServiceImpl implements SampleService {
     }
 
     @Override
-    public Result add(Sample sample) {
-        try{
-            String []s= FileUploadUtil.getCoordinate(sample.getSampleLocations());
-            System.out.println(s[0]+','+s[1]);
-            if(s[0].length()<15&&Float.parseFloat(s[1])<30.0){
-                sample.setSampleJdu(s[0]);
-                sample.setSampleWdu(s[1]);
-                sample.setSampleLength(sample.getSampleList().length());
-                int result=sampleMapper.add(sample);
-                if(result != 0){
-                    return Result.success("添加数据成功！");
-                }
-            }else{
-                return Result.failure("经纬度计算失败，请重试（可能是系统原因或者地点名存在歧义）！");
+    public Result add(Sample sample) throws IOException {
+        String []s= FileUploadUtil.getCoordinate(sample.getSampleLocations());
+        System.out.println(s[0]+','+s[1]);
+        if(s[0].length()<15&&Float.parseFloat(s[1])<30.0){
+            sample.setSampleJdu(s[0]);
+            sample.setSampleWdu(s[1]);
+            sample.setSampleLength(sample.getSampleList().length());
+            int result=sampleMapper.add(sample);
+            if(result != 0){
+                return Result.success("添加数据成功！");
             }
-        }catch (Exception e){
-            log.debug("错误"+ e.getMessage());
+        }else{
+            return Result.failure("经纬度计算失败，请重试（可能是系统原因或者地点名存在歧义）！");
         }
         return Result.failure("添加数据失败！");
     }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
+
 /**
  * @author kaito kuroba
  * @Email 3118659412@qq.com
@@ -46,7 +48,7 @@ public class SampleController {
     }
 
     @PostMapping("/add")
-    public Result add(Sample sample){
+    public Result add(Sample sample) throws IOException {
         return sampleService.add(sample);
     }
 }

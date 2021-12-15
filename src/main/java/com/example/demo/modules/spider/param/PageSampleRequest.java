@@ -11,6 +11,9 @@ import lombok.Data;
 @Data
 public class PageSampleRequest extends PageRequest {
 
-    /**  搜索 */
-    public String search;
+    /**   搜 索  */
+    private String search;
+
+    /**   用 户  */
+    private String username;
 }

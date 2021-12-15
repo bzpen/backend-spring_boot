@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.common.web.base.BaseController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -36,6 +37,13 @@ public class ViewSampleController extends BaseController {
     @ApiOperation("蜘蛛序列数据查询")
     public Result list(PageSampleRequest request){
         PageResponse<ViewSample> list = iViewSampleService.list(request);
+        return Result.success(list);
+    }
+
+    @GetMapping("list-user")
+    @ApiOperation("个人蜘蛛序列数据查询")
+    public Result list_user(HttpServletRequest request, PageSampleRequest pageRequest){
+        PageResponse<ViewSample> list = iViewSampleService.list_user(request,pageRequest);
         return Result.success(list);
     }
 

@@ -1,5 +1,6 @@
 package com.example.demo.common.config;
 
+import com.example.demo.common.constant.Constant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -45,11 +46,11 @@ public class SwaggerConfig {
         AuthorizationScope authorizationScope = new AuthorizationScope("global", "description");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
-        return Collections.singletonList(new SecurityReference("token", authorizationScopes));
+        return Collections.singletonList(new SecurityReference(Constant.Token.TOKEN_HEADER, authorizationScopes));
     }
 
     private List<SecurityScheme> securitySchemes() {
-        return Collections.singletonList(new ApiKey("token", "token", "header"));
+        return Collections.singletonList(new ApiKey(Constant.Token.TOKEN_HEADER,Constant.Token.TOKEN_HEADER, "header"));
     }
 
 

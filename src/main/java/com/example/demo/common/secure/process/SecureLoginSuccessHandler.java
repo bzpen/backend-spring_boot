@@ -1,6 +1,7 @@
 package com.example.demo.common.secure.process;
 
 import com.example.demo.common.secure.services.SecureUser;
+import com.example.demo.common.secure.uutoken.SecureResultToken;
 import com.example.demo.common.secure.uutoken.SecureUserToken;
 import com.example.demo.common.secure.uutoken.SecureUserTokenService;
 import com.example.demo.common.util.ServletUtil;
@@ -32,14 +33,16 @@ public class SecureLoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         SecureUser secureUser = (SecureUser) authentication.getPrincipal();
+
         SecureUserToken userToken = secureUserTokenService.createToken(secureUser);
-        String token = secureUserTokenService.saveToken(userToken);
 
-        ServletUtil.writeJson(Result.success(ResultCode.LOGIN_SUCCESS,token));
+        SecureResultToken resultToken = SecureResultToken.builder()
+                .token(secureUserTokenService.saveToken(userToken))
+                .username(secureUser.getUsername())
+                .userPhoto(secureUser.getUserPhoto())
+                .build();
+
+        ServletUtil.writeJson(Result.success(ResultCode.LOGIN_SUCCESS,resultToken));
     }
 
-    @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
-        AuthenticationSuccessHandler.super.onAuthenticationSuccess(request, response, chain, authentication);
-    }
 }

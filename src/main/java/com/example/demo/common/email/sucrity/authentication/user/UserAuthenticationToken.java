@@ -12,19 +12,19 @@ import java.util.Collection;
  * @Email 3118659412@qq.com
  * @since 2021/12/11
  */
-public class EmailAuthenticationToken extends AbstractAuthenticationToken {
+public class UserAuthenticationToken extends AbstractAuthenticationToken {
     /**
      * 这里的 principal 指的是 email 地址（未认证的时候）
      */
     private final Object principal;
 
-    public EmailAuthenticationToken(Object principal) {
+    public UserAuthenticationToken(Object principal) {
         super((Collection) null);
         this.principal = principal;
         setAuthenticated(false);
     }
 
-    public EmailAuthenticationToken(Object principal, Collection<? extends GrantedAuthority> authorities) {
+    public UserAuthenticationToken(Object principal, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         this.principal = principal;
         super.setAuthenticated(true);
