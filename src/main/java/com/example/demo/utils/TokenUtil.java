@@ -1,9 +1,6 @@
 package com.example.demo.utils;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.DecodedJWT;
+
 import com.example.demo.modules.spider.entity.Admin;
 
 import java.util.Date;
@@ -22,13 +19,7 @@ public class TokenUtil {
     public static String sign(Admin admin) {
         String token = null;
         try {
-            Date expiresAt = new Date(System.currentTimeMillis() + EXPIRE_TIME);
-            token = JWT.create()
-                    .withIssuer("auth0")
-                    .withClaim("adminNumber", admin.getNumber())
-                    .withExpiresAt(expiresAt)
-                    // 使用了HMAC256加密算法。
-                    .sign(Algorithm.HMAC256(TOKEN_SECRET));
+          return null;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,12 +35,7 @@ public class TokenUtil {
      */
     public static boolean verify(String token) {
         try {
-            JWTVerifier verifier = JWT.require(Algorithm.HMAC256(TOKEN_SECRET)).withIssuer("auth0").build();
-            DecodedJWT jwt = verifier.verify(token);
-            System.out.println("认证通过：");
-            System.out.println("adminNumber: " + jwt.getClaim("adminNumber").asString());
-            System.out.println("过期时间：      " + jwt.getExpiresAt());
-            return true;
+          return false;
         } catch (Exception e) {
             System.out.println(e);
             return false;
@@ -64,15 +50,7 @@ public class TokenUtil {
      */
     public static Admin tokenAdmin(String token) {
         try {
-            if(verify(token)){
-                Admin admin=new Admin();
-                JWTVerifier verifier = JWT.require(Algorithm.HMAC256(TOKEN_SECRET)).withIssuer("auth0").build();
-                DecodedJWT jwt = verifier.verify(token);
-                admin.setNumber(jwt.getClaim("adminNumber").asString());
-                return admin;
-            }else{
-                return null;
-            }
+            return null;
         } catch (Exception e) {
             System.out.println(e);
             return null;

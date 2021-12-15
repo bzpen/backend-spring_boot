@@ -3,6 +3,7 @@ package com.example.demo.common.config;
 import com.example.demo.common.constant.Constant;
 import com.example.demo.common.email.sucrity.authentication.email.EmailAuthenticationFilter;
 import com.example.demo.common.email.sucrity.authentication.email.EmailAuthenticationProvider;
+import com.example.demo.common.email.sucrity.authentication.user.UserAuthenticationFilter;
 import com.example.demo.common.secure.process.*;
 import com.example.demo.common.secure.uutoken.SecureUserTokenSupport;
 import org.springframework.context.annotation.Bean;
@@ -127,24 +128,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors();
     }
 
-    @Bean
-    @Override
-    protected AuthenticationManager authenticationManager() throws Exception {
-        return super.authenticationManager();
-    }
+//    @Bean
+//    @Override
+//    protected AuthenticationManager authenticationManager() throws Exception {
+//        return super.authenticationManager();
+//    }
+//
+//    @Bean
+//    public EmailAuthenticationFilter emailCodeAuthenticationFilter() {
+//        EmailAuthenticationFilter emailCodeAuthenticationFilter = new EmailAuthenticationFilter();
+//        emailCodeAuthenticationFilter.setAuthenticationSuccessHandler(secureAuthenticationSuccessHandler);
+//        emailCodeAuthenticationFilter.setAuthenticationFailureHandler(secureAuthenticationFailureHandler);
+//        return emailCodeAuthenticationFilter;
+//    }
+//
+//    @Bean
+//    public EmailAuthenticationProvider emailCodeAuthenticationProvider() {
+//        return new EmailAuthenticationProvider();
+//    }
 
-    @Bean
-
-    public EmailAuthenticationFilter emailCodeAuthenticationFilter() {
-        EmailAuthenticationFilter emailCodeAuthenticationFilter = new EmailAuthenticationFilter();
-        emailCodeAuthenticationFilter.setAuthenticationSuccessHandler(secureAuthenticationSuccessHandler);
-        emailCodeAuthenticationFilter.setAuthenticationFailureHandler(secureAuthenticationFailureHandler);
-        return emailCodeAuthenticationFilter;
-    }
-
-    @Bean
-    public EmailAuthenticationProvider emailCodeAuthenticationProvider() {
-        return new EmailAuthenticationProvider();
-    }
 }
 

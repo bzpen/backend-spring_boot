@@ -16,4 +16,12 @@
             </if>
         </where>
     </select>
+
+    <select id="selectUserViewSample" resultType="com.example.demo.modules.spider.entity.ViewSample">
+        select * from view_sample
+        <where>
+            username = #{username}
+        </where>
+    </select>
+
 </mapper>

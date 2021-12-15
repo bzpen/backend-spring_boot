@@ -67,9 +67,14 @@ public class MybatisPlusGeneratorUtil {
         List<String> tables = new ArrayList<>();
 //        tables.add("tb_role");
 //        tables.add("tb_user");
+        tables.add("tb_admin");
+        tables.add("tb_sample");
+        tables.add("tb_spider");
 //        tables.add("view_user");
 //        tables.add("view_admin");
 //        tables.add("view_sample");
+        tables.add("log");
+
         create(tables);
     }
 }

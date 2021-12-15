@@ -27,6 +27,6 @@ public class PageRequest {
     /**
      * 每页数量
      */
-    @ApiModelProperty("当前页码")
+    @ApiModelProperty("每页数量")
     private int pageSize = 10;
 }

@@ -1,5 +1,7 @@
 package com.example.demo.common.web.domain;
 
+import com.example.demo.common.secure.uutoken.SecureResultToken;
+import com.example.demo.common.secure.uutoken.SecureUserToken;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -78,11 +80,10 @@ public class Result<T> implements Serializable {
     }
 
     /**
-     * 成 功 操 作, 返 回 token
+     * 成 功 操 作, 返 回 userToken
      */
-    public static Result success(ResultCode resultCode, String token) {
-        Result result = success(resultCode.getCode(), resultCode.getMessage());
-        result.setToken(token);
+    public static Result success(ResultCode resultCode, SecureResultToken userToken) {
+        Result result = success(resultCode.getCode(), resultCode.getMessage(),userToken);
         return result;
     }
     /**
@@ -96,6 +97,7 @@ public class Result<T> implements Serializable {
         result.setData(data);
         return result;
     }
+
 
     /**
      * 失 败 操 作, 默 认 数 据

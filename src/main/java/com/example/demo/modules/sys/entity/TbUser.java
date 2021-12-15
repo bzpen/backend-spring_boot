@@ -11,6 +11,7 @@ import com.example.demo.common.secure.services.SecureUser;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +26,7 @@ import lombok.Setter;
 @Data
 @TableName("tb_user")
 @ApiModel(value = "TbUser对象", description = "")
+@EqualsAndHashCode(callSuper = true)
 public class TbUser extends SecureUser implements Serializable {
 
     @ApiModelProperty("邮箱")
@@ -42,10 +44,5 @@ public class TbUser extends SecureUser implements Serializable {
     @ApiModelProperty("注册时间")
     @TableField("registTime")
     private String registTime;
-
-    @ApiModelProperty("头像")
-    @TableField("userPhoto")
-    private String userPhoto;
-
 
 }
