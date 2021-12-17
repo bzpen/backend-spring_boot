@@ -13,16 +13,18 @@ spring:
     ## 端口
     port: 587
     ## 账户
-    username: 3118659412@qq.com
+    username: ENC(YzcQf2knNQVnqTHTvSd1F7MD9I8yHs36xaFpbseHQU34R4x6UK0oaMILZ0rMhnAhN9l7g1B2QHm4jgyesnZeAw==)
     ## 密钥
-    password: iecshggikvevdfic
+    password: ENC(qtKqjdkdPISJ8zLF8v9y7NpXmJXYitDRthGw4ed6SrRzQRAfuA5zI5OZZVfFFPMmddcOO7+9lO8KCffVeZBBSQ==)
     ## 字符集
     default-encoding: UTF-8
     ## 测试
     test-connection: false
-    ## 来源
-    from: 854085467@qq.com
 
 mybatis-plus:
   type-aliases-package: com.example.demo.modules.spider.entity
   mapper-locations: classpath*:com/example/demo/modules/**/xml/**.xml
+
+jasypt:
+  encryptor:
+    password: youthlab-encrypt

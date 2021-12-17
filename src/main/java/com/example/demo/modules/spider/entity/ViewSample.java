@@ -11,11 +11,10 @@ import java.util.Date;
 import com.example.demo.common.web.base.excel.LocalDateTimeConverter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.xml.crypto.Data;
 
 /**
  * <p>
@@ -25,8 +24,7 @@ import javax.xml.crypto.Data;
  * @author kaito kuroba
  * @since 2021-12-14
  */
-@Getter
-@Setter
+@Data
 @TableName("view_sample")
 @ApiModel(value = "ViewSample对象", description = "VIEW")
 public class ViewSample implements Serializable {

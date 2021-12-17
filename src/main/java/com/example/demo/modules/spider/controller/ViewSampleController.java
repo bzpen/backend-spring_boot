@@ -61,17 +61,21 @@ public class ViewSampleController extends BaseController {
 
     @PostMapping("exportExcel")
     @ApiOperation("导出 Excel ")
-    public void getExcel(HttpServletResponse response) throws IllegalAccessException, IOException,
+    public void getExcel(HttpServletResponse response,@RequestBody List<ViewSample> viewSampleList) throws IllegalAccessException, IOException,
             InstantiationException {
-        List<ViewSample> list = iViewSampleService.list();
+        List<ViewSample> list;
+        if(viewSampleList.isEmpty())
+            list = iViewSampleService.list();
+        list=viewSampleList;
         ExcelUtil.download(response,ViewSample.class,list);
     }
 
-    @RequestMapping("importExcel")
-    @ApiOperation("导入Excel")
+    @PostMapping("importExcel")
+    @ApiOperation("大量数据导入Excel（暂时不用）")
     public Result importExcel(@RequestParam(value = "excelFile") MultipartFile file,HttpServletRequest request) throws IOException{
         EasyExcel.read(file.getInputStream(), TbSample.class, new Listener(iTbSampleService,request)).sheet().doRead();
         return success();
     }
+
 
 }
