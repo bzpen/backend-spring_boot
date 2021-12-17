@@ -77,5 +77,4 @@ public class ViewSampleController extends BaseController {
         return success();
     }
 
-
 }
