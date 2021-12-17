@@ -69,6 +69,23 @@ public class SecureUser extends BaseDomain implements UserDetails,CredentialsCon
     private TbRole role;
 
     /**
+     * 最近登录时间
+     */
+    @TableField("upLoginTime")
+    private String upLoginTime;
+
+    /**
+     * 注册时间
+     */
+    @TableField("registTime")
+    private String registTime;
+
+    /**
+     * 用户邮箱
+     */
+    @TableField("email")
+    private String email;
+    /**
      * 权限
      */
     @TableField(exist = false)

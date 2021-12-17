@@ -4,7 +4,7 @@ import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.Sample;
 import com.example.demo.modules.spider.mapper.SampleMapper;
 import com.example.demo.modules.spider.service.SampleService;
-import com.example.demo.utils.FileUploadUtil;
+import com.example.demo.common.util.FileUploadUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
