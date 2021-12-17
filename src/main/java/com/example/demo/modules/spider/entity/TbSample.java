@@ -6,12 +6,15 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * <p>
@@ -50,6 +53,7 @@ public class TbSample implements Serializable {
 
     @ApiModelProperty("采样时间")
     @TableField("time")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime time;
 
     @ApiModelProperty("采样地点")
@@ -75,6 +79,5 @@ public class TbSample implements Serializable {
     @ApiModelProperty("样本介绍")
     @TableField("remark")
     private String remark;
-
 
 }

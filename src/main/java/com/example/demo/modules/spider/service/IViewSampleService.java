@@ -34,4 +34,5 @@ public interface IViewSampleService extends IService<ViewSample> {
      */
     PageResponse<ViewSample> list_user(HttpServletRequest request,PageSampleRequest pageRequest);
 
+
 }

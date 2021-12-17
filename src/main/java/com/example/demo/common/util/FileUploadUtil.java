@@ -1,6 +1,9 @@
-package com.example.demo.utils;
+package com.example.demo.common.util;
 
 
+import com.example.demo.modules.spider.entity.ViewSample;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +13,10 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileUploadUtil {
 
@@ -44,63 +51,46 @@ public class FileUploadUtil {
         return false;
     }
 
-    /**
-     * 文件下载工具类
-     * @param file
-     * @return
-     * @throws IOException
-     */
-    public static ResponseEntity<byte[]> buildResponseEntity(File file) throws IOException {
-        byte[] body = null;
-        //获取文件
-        InputStream is = new FileInputStream(file);
-        body = new byte[is.available()];
-        is.read(body);
-        HttpHeaders headers = new HttpHeaders();
-        //设置文件类型
-        headers.add("Content-Disposition", "attchement;filename=" + file.getName());
-        //设置Http状态码
-        HttpStatus statusCode = HttpStatus.OK;
-        //返回数据
-        ResponseEntity<byte[]> entity = new ResponseEntity<byte[]>(body, headers, statusCode);
-        return entity;
+
+
+    public static List<ViewSample> excelUpload(InputStream inputStream) throws IOException, InvalidFormatException {
+        List<ViewSample> dataList = new ArrayList<ViewSample>();
+        Workbook wb = WorkbookFactory.create(inputStream);
+        // 获取第一个sheet
+        Sheet sheet = wb.getSheetAt(0);
+        // 获取最大行数
+        int rownum = sheet.getPhysicalNumberOfRows();
+        // 获取第一行
+        Row row = sheet.getRow(0);
+        // 循环行
+        for (int i = 2; i < rownum-1; i++) {
+            ViewSample viewSample = new ViewSample();
+            row = sheet.getRow(i);
+            if (row != null) {
+                try {
+                    viewSample.setNumber(row.getCell(0).toString());
+                    viewSample.setName(row.getCell(1).toString());
+                    viewSample.setGenetic(row.getCell(2).toString());
+
+
+                    DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    LocalDateTime.parse(row.getCell(3).toString(),df);
+                    viewSample.setTime(LocalDateTime.parse(row.getCell(3).toString(),df));
+
+                    viewSample.setLocations(row.getCell(4).toString());
+                    viewSample.setList(row.getCell(5).toString());
+                    viewSample.setRemark(row.getCell(6).toString());
+
+                    dataList.add(viewSample);
+                }catch(Exception e){
+                    System.out.println("读取错误");
+                }
+            } else {
+                continue;
+            }
+        }
+        return dataList;
     }
-
-
-//    public static List<Sample_Spider> excelUpload(InputStream inputStream) throws IOException, InvalidFormatException {
-//        List<Sample_Spider> dataList = null;
-//        Workbook wb = WorkbookFactory.create(inputStream);
-//        // 获取第一个sheet
-//        Sheet sheet = wb.getSheetAt(0);
-//        // 获取最大行数
-//        int rownum = sheet.getPhysicalNumberOfRows();
-//        System.out.println(rownum);
-//        // 获取第一行
-//        Row row = sheet.getRow(0);
-//        // 存放表中的数据
-//        dataList = new ArrayList<Sample_Spider>();
-//        // 循环行
-//        for (int i = 2; i < rownum-1; i++) {
-//            Sample_Spider sample_spider = new Sample_Spider();
-//            row = sheet.getRow(i);
-//            if (row != null) {
-//                System.out.println(row.getCell(4).toString());
-//                sample_spider.setSampleNumber(row.getCell(0).toString());
-//                sample_spider.setSpiderName(row.getCell(1).toString());
-//                sample_spider.setUserName(row.getCell(2).toString());
-//                sample_spider.setSampleGenetic(row.getCell(3).toString());
-//                sample_spider.setSampleTime(row.getCell(4).toString());
-//                sample_spider.setSampleLocations(row.getCell(5).toString());
-//                sample_spider.setSampleList(row.getCell(6).toString());
-//                sample_spider.setSampleLength(sample_spider.getSampleList().length());
-//
-//                dataList.add(sample_spider);
-//            } else {
-//                continue;
-//            }
-//        }
-//        return dataList;
-//    }
 
 
 //    private static final String path="D:/Vue毕设项目/毕设后台/大疣蛛DNA实验采集地点统计.xlsx";

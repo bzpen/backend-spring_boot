@@ -2,7 +2,10 @@ package com.example.demo.modules.spider.mapper;
 
 import com.example.demo.modules.spider.entity.TbSample;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.demo.modules.spider.param.MapSample;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,5 +18,11 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface TbSampleMapper extends BaseMapper<TbSample> {
 
+    /**
+     * 筛 选 去 除 重 复 地 点
+     *
+     * @return
+     */
+    List<MapSample> getMapList();
 
 }

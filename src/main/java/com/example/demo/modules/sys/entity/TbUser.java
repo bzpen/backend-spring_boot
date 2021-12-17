@@ -29,20 +29,12 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 public class TbUser extends SecureUser implements Serializable {
 
-    @ApiModelProperty("邮箱")
-    @TableField("email")
-    private String email;
+
 
     @ApiModelProperty("角色")
     @TableField("roleId")
     private String roleId;
 
-    @ApiModelProperty("最近登录时间")
-    @TableField("upLoginTime")
-    private String upLoginTime;
 
-    @ApiModelProperty("注册时间")
-    @TableField("registTime")
-    private String registTime;
 
 }

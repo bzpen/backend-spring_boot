@@ -2,4 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.modules.spider.mapper.TbSampleMapper">
 
+    <select id="getMapList" resultType="com.example.demo.modules.spider.param.MapSample">
+        SELECT DISTINCT locations,j_du,w_du FROM tb_sample
+    </select>
+
 </mapper>

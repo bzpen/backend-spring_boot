@@ -40,6 +40,9 @@ public class SecureLoginSuccessHandler implements AuthenticationSuccessHandler {
                 .token(secureUserTokenService.saveToken(userToken))
                 .username(secureUser.getUsername())
                 .userPhoto(secureUser.getUserPhoto())
+                .email(secureUser.getEmail())
+                .registTime(secureUser.getRegistTime())
+                .upLoginTime(secureUser.getUpLoginTime())
                 .build();
 
         ServletUtil.writeJson(Result.success(ResultCode.LOGIN_SUCCESS,resultToken));
