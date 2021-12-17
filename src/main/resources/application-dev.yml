@@ -1,9 +1,11 @@
 spring:
   datasource:
     username: root
-    password: bzp510719
+    password: ENC(kFKXwL1fSjzobAOFyJIGx/1Yu5E+aW8y1HNIo6fKHUfjvm8oga8yiOwAT8abOdND)
+
     url: jdbc:mysql://47.115.230.231:3306/spider_data?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: Asia/Shanghai

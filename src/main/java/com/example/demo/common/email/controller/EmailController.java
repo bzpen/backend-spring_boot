@@ -41,6 +41,7 @@ public class EmailController {
         return emailCodeService.check(email);
     }
 
+
     @GetMapping("checkCode")
     @ApiOperation("邮箱验证码检测")
     public Result checkCode(Email email){
