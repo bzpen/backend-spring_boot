@@ -63,6 +63,7 @@ public class EmailCodeServiceImpl implements EmailCodeService {
 
     @Override
     public String taskCode(String key) {
+        System.out.println(Constant.Email.CODE_NAME_PREFIX + key);
         return redisTemplate.opsForValue().get(Constant.Email.CODE_NAME_PREFIX + key);
     }
 

@@ -16,7 +16,7 @@ public class PasswordTest {
      */
     @Test
     void printPasswordEncoder() {
-        String password = "bzp510719";
+        String password = "123";
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         System.out.println(bCryptPasswordEncoder.encode(password));

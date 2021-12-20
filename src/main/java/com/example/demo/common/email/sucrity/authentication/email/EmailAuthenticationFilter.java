@@ -2,13 +2,18 @@ package com.example.demo.common.email.sucrity.authentication.email;
 
 import com.example.demo.common.email.service.EmailCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,8 +29,9 @@ import java.util.ArrayList;
  */
 public class EmailAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-    @Autowired
-    EmailCodeService emailCodeService;
+    private EmailCodeService emailCodeService;
+
+
 
     /**
      * 前端传来的 参数名 - 用于request.getParameter 获取
@@ -48,8 +54,9 @@ public class EmailAuthenticationFilter extends AbstractAuthenticationProcessingF
      * 通过 传入的 参数 创建 匹配器
      * 即 Filter过滤的url
      */
-    public EmailAuthenticationFilter() {
+    public EmailAuthenticationFilter(EmailCodeService emailCodeService) {
         super(new AntPathRequestMatcher("/user/email","POST"));
+        this.emailCodeService=emailCodeService;
     }
 
 
@@ -109,6 +116,7 @@ public class EmailAuthenticationFilter extends AbstractAuthenticationProcessingF
      */
     public boolean checkCode(HttpServletRequest request ){
         String code1 = request.getParameter(DEFAULT_EMAIL_CODE);
+        System.out.println(this.getEmail(request));
         String code = emailCodeService.taskCode(this.getEmail(request));
         if(code1.equals(code)){
             return true;

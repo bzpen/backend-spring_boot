@@ -22,8 +22,6 @@ import java.util.HashMap;
 
 @ResponseBody
 @Controller
-@RequestMapping("/admin")
-@Api(tags = "管理员管理接口")
 public class AdminController {
 
     @Autowired
@@ -34,7 +32,6 @@ public class AdminController {
      * @param admin
      * @return
      */
-    @PostMapping("/login")
     public HashMap<String, Object> admin_Login(Admin admin){
         return adminService.login_Admin(admin);
     }

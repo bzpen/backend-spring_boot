@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,7 @@ import lombok.Setter;
  * @since 2021-12-15
  */
 @Data
+@Builder
 @TableName("tb_admin")
 @ApiModel(value = "TbAdmin对象", description = "")
 public class TbAdmin implements Serializable {
@@ -32,14 +34,14 @@ public class TbAdmin implements Serializable {
     @TableField("name")
     private String name;
 
-    @TableField("number")
-    private String number;
+    @TableField("username")
+    private String username;
 
     @TableField("password")
     private String password;
 
-    @TableField("head")
-    private String head;
+    @TableField("userPhoto")
+    private String userPhoto;
 
     @TableField("role")
     private Integer role;
