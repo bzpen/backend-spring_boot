@@ -1,11 +1,9 @@
 package com.example.demo.common.secure.services;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.example.demo.common.web.base.domain.BaseDomain;
-import com.example.demo.modules.sys.entity.TbRole;
-import io.swagger.annotations.ApiModelProperty;
+import com.example.demo.modules.sys.entity.SysRole;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.security.core.CredentialsContainer;
@@ -13,7 +11,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -66,7 +63,7 @@ public class SecureUser extends BaseDomain implements UserDetails,CredentialsCon
      * 角色
      */
     @TableField(exist = false)
-    private TbRole role;
+    private SysRole role;
 
     /**
      * 最近登录时间

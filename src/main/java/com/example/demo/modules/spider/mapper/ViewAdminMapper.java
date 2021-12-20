@@ -2,7 +2,10 @@ package com.example.demo.modules.spider.mapper;
 
 import com.example.demo.modules.spider.entity.ViewAdmin;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.demo.modules.spider.param.PageViewAdminRequest;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +18,11 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ViewAdminMapper extends BaseMapper<ViewAdmin> {
 
+    /**
+     * 查询管理员列表
+     *
+     * @param request
+     * @return
+     */
+    List<ViewAdmin> selectViewAdmin(PageViewAdminRequest request);
 }

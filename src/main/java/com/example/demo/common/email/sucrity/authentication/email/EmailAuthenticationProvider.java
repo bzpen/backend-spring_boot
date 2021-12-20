@@ -1,16 +1,11 @@
 package com.example.demo.common.email.sucrity.authentication.email;
 
-import com.example.demo.modules.sys.service.ITbUserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.modules.sys.service.SysUserService;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-
-import javax.annotation.Resource;
 
 /**
  * 邮件验证过滤器
@@ -21,9 +16,9 @@ import javax.annotation.Resource;
  */
 public class EmailAuthenticationProvider implements AuthenticationProvider {
 
-    private ITbUserService tbUserService;
+    private SysUserService tbUserService;
 
-    public EmailAuthenticationProvider(ITbUserService tbUserService){
+    public EmailAuthenticationProvider(SysUserService tbUserService){
         this.tbUserService=tbUserService;
     }
 

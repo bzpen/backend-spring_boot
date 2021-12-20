@@ -22,7 +22,7 @@ import lombok.Setter;
 @Setter
 @TableName("tb_role")
 @ApiModel(value = "TbRole对象", description = "")
-public class TbRole implements Serializable {
+public class SysRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

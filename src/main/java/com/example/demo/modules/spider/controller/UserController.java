@@ -4,12 +4,8 @@ package com.example.demo.modules.spider.controller;
 import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.User;
 import com.example.demo.modules.spider.service.UserService;
-import com.example.demo.modules.sys.entity.TbUser;
-import com.example.demo.modules.sys.service.ITbUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

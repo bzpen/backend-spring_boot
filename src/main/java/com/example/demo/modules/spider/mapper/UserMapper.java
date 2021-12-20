@@ -2,7 +2,6 @@ package com.example.demo.modules.spider.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.demo.modules.spider.entity.User;
-import com.example.demo.modules.sys.entity.TbRole;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

@@ -4,6 +4,8 @@ import com.example.demo.modules.spider.entity.TbAdmin;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -15,4 +17,11 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface TbAdminMapper extends BaseMapper<TbAdmin> {
 
+    /**
+     * 管 理 员 批 量 删 除
+     *
+     * @param list
+     * @return
+     */
+    boolean delList(List<Integer> list);
 }

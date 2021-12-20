@@ -5,15 +5,11 @@ import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.User;
 import com.example.demo.modules.spider.mapper.UserMapper;
 import com.example.demo.modules.spider.service.UserService;
-import com.example.demo.modules.sys.service.ITbUserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.modules.sys.service.SysUserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.xml.crypto.Data;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,7 +28,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     UserMapper userMapper;
 
     @Resource
-    ITbUserService iTbUserService;
+    SysUserService sysUserService;
 
     @Resource
     BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -196,7 +192,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Result check_username(String username) {
-        if(iTbUserService.selectByUsername(username)!=null)
+        if(sysUserService.selectByUsername(username)!=null)
             return Result.success("用户名已注册");
         return Result.failure("用户名未注册");
     }

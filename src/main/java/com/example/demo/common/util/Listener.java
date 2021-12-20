@@ -2,11 +2,8 @@ package com.example.demo.common.util;
 
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
-import com.example.demo.modules.spider.entity.TbSample;
 import com.example.demo.modules.spider.entity.ViewSample;
 import com.example.demo.modules.spider.service.ITbSampleService;
-import com.example.demo.modules.sys.entity.TbUser;
-import com.example.demo.modules.sys.service.impl.TbUserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
 package com.example.demo.common.secure.services;
 
-import com.example.demo.modules.sys.entity.TbRole;
-import com.example.demo.modules.sys.entity.TbUser;
-import com.example.demo.modules.sys.mapper.TbRoleMapper;
-import com.example.demo.modules.sys.mapper.TbUserMapper;
+import com.example.demo.modules.sys.entity.SysRole;
+import com.example.demo.modules.sys.entity.SysUser;
+import com.example.demo.modules.sys.mapper.SysRoleMapper;
+import com.example.demo.modules.sys.mapper.SysUserMapper;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -26,28 +25,28 @@ import java.util.Set;
 public class SecureUserService implements UserDetailsService {
 
     @Resource
-    private TbUserMapper tbUserMapper;
+    private SysUserMapper sysUserMapper;
 
     @Resource
-    private TbRoleMapper tbRoleMapper;
+    private SysRoleMapper sysRoleMapper;
 
     /**
      * 加载用户信息
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        TbUser tbUser = tbUserMapper.selectByUsername(username);
-        if(tbUser==null){
+        SysUser sysUser = sysUserMapper.selectByUsername(username);
+        if(sysUser ==null){
             throw new UsernameNotFoundException("USERNAME NOT SUPPORT");
         }
-        tbUser.setAuthorities(loadAuthorities(tbUser.getRoleId()));
-        tbUser.setRole(loadRoles(tbUser.getRoleId()));
-        return tbUser;
+        sysUser.setAuthorities(loadAuthorities(sysUser.getRoleId()));
+        sysUser.setRole(loadRoles(sysUser.getRoleId()));
+        return sysUser;
     }
 
     public Set<? extends GrantedAuthority> loadAuthorities(String roleId){
         Set<SimpleGrantedAuthority> authorities =new HashSet<>();
-        TbRole role = loadRoles(roleId);
+        SysRole role = loadRoles(roleId);
         if(role != null){
             SimpleGrantedAuthority authority =new SimpleGrantedAuthority(role.getName());
             authorities.add(authority);
@@ -55,7 +54,7 @@ public class SecureUserService implements UserDetailsService {
         return authorities;
     }
 
-    public TbRole loadRoles(String roleId){
-        return tbRoleMapper.selectRoleByUserId(roleId);
+    public SysRole loadRoles(String roleId){
+        return sysRoleMapper.selectRoleByUserId(roleId);
     }
 }

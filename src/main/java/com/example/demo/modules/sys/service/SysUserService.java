@@ -1,6 +1,6 @@
 package com.example.demo.modules.sys.service;
 
-import com.example.demo.modules.sys.entity.TbUser;
+import com.example.demo.modules.sys.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author kaito kuroba
  * @since 2021-12-08
  */
-public interface ITbUserService extends IService<TbUser> {
+public interface SysUserService extends IService<SysUser> {
 
     /**
      * 用户名获取用户信息

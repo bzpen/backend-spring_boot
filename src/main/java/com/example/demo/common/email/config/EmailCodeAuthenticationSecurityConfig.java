@@ -5,7 +5,7 @@ import com.example.demo.common.email.sucrity.authentication.email.EmailAuthentic
 import com.example.demo.common.email.sucrity.authentication.email.EmailAuthenticationProvider;
 import com.example.demo.common.secure.process.SecureLoginFailureHandler;
 import com.example.demo.common.secure.process.SecureLoginSuccessHandler;
-import com.example.demo.modules.sys.service.ITbUserService;
+import com.example.demo.modules.sys.service.SysUserService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -42,7 +42,7 @@ public class EmailCodeAuthenticationSecurityConfig extends SecurityConfigurerAda
     private EmailCodeServiceImpl emailCodeService;
 
     @Resource
-    private ITbUserService iTbUserService;
+    private SysUserService sysUserService;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -52,7 +52,7 @@ public class EmailCodeAuthenticationSecurityConfig extends SecurityConfigurerAda
         filter .setAuthenticationSuccessHandler(secureAuthenticationSuccessHandler);
         filter .setAuthenticationFailureHandler(secureAuthenticationFailureHandler);
 
-        EmailAuthenticationProvider provider = new EmailAuthenticationProvider(iTbUserService) ;
+        EmailAuthenticationProvider provider = new EmailAuthenticationProvider(sysUserService) ;
         http.authenticationProvider(provider)
                 .addFilterAfter(filter , UsernamePasswordAuthenticationFilter.class);
     }

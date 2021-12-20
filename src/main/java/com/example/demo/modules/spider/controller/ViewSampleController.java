@@ -11,7 +11,6 @@ import com.example.demo.modules.spider.entity.ViewSample;
 import com.example.demo.modules.spider.param.PageSampleRequest;
 import com.example.demo.modules.spider.service.ITbSampleService;
 import com.example.demo.modules.spider.service.IViewSampleService;
-import com.example.demo.modules.sys.service.impl.TbUserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -63,10 +62,9 @@ public class ViewSampleController extends BaseController {
     @ApiOperation("导出 Excel ")
     public void getExcel(HttpServletResponse response,@RequestBody List<ViewSample> viewSampleList) throws IllegalAccessException, IOException,
             InstantiationException {
-        List<ViewSample> list;
+        List<ViewSample> list = viewSampleList;
         if(viewSampleList.isEmpty())
             list = iViewSampleService.list();
-        list=viewSampleList;
         ExcelUtil.download(response,ViewSample.class,list);
     }
 
