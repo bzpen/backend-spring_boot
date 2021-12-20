@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -23,6 +24,9 @@ public class TbAdminServiceImpl extends ServiceImpl<TbAdminMapper, TbAdmin> impl
     @Resource
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Resource
+    TbAdminMapper tbAdminMapper;
+
     @Override
     public boolean save(TbAdmin entity) {
         TbAdmin admin=TbAdmin.builder()
@@ -37,5 +41,11 @@ public class TbAdminServiceImpl extends ServiceImpl<TbAdminMapper, TbAdmin> impl
                 .password(bCryptPasswordEncoder.encode(entity.getPassword()))
                 .build();
         return super.save(admin);
+    }
+
+
+    @Override
+    public boolean delList(List<Integer> list) {
+        return tbAdminMapper.delList(list);
     }
 }

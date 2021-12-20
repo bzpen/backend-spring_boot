@@ -1,10 +1,8 @@
 package com.example.demo.modules.sys.mapper;
 
-import com.example.demo.modules.sys.entity.TbRole;
+import com.example.demo.modules.sys.entity.SysRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 /**
  * <p>
@@ -15,13 +13,13 @@ import java.util.List;
  * @since 2021-12-08
  */
 @Mapper
-public interface TbRoleMapper extends BaseMapper<TbRole> {
+public interface SysRoleMapper extends BaseMapper<SysRole> {
 
     /**
      * 获取用户角色
      *
      * @param roleId 角色编号
-     * @return {@link TbRole}
+     * @return {@link SysRole}
      */
-    TbRole selectRoleByUserId(String roleId);
+    SysRole selectRoleByUserId(String roleId);
 }

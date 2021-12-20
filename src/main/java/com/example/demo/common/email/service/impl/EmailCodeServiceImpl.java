@@ -6,7 +6,7 @@ import com.example.demo.common.email.service.EmailCodeService;
 import com.example.demo.common.util.EmailCodeUtil;
 import com.example.demo.common.web.domain.Result;
 import com.example.demo.common.web.exception.token.TokenException;
-import com.example.demo.modules.sys.service.ITbUserService;
+import com.example.demo.modules.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
@@ -32,7 +32,7 @@ public class EmailCodeServiceImpl implements EmailCodeService {
     private JavaMailSender mailSender;
 
     @Resource
-    private ITbUserService iTbUserService;
+    private SysUserService sysUserService;
 
     @Value("${spring.mail.username}")
     private String from;// 发送者
@@ -74,7 +74,7 @@ public class EmailCodeServiceImpl implements EmailCodeService {
 
     @Override
     public Result check(Email email) {
-        UserDetails userDetails = iTbUserService.getByEmail(email.getUserEmail());
+        UserDetails userDetails = sysUserService.getByEmail(email.getUserEmail());
         if(userDetails != null){
             return Result.success("邮箱已注册");
         }

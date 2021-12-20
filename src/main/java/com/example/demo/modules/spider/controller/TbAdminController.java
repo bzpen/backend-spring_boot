@@ -35,23 +35,23 @@ public class TbAdminController extends BaseController {
         return decide(iTbAdminService.save(tbAdmin));
     }
 
-    @ApiOperation("管理员删除")
+    @ApiOperation("单个管理员删除")
     @GetMapping("del/{id}")
     public Result del(@PathVariable String id){
         return decide(iTbAdminService.removeById(id));
     }
 
-    @ApiOperation("管理员查询")
-    @GetMapping("get/{id}")
-    public Result get(@PathVariable String id){
-        return success(iTbAdminService.getById(id));
+    @ApiOperation("批量删除")
+    @PostMapping("delList")
+    public Result delList(@RequestBody List<Integer> list){
+        return decide(iTbAdminService.delList(list));
     }
 
-    @ApiOperation("管理员列表获取")
-    @GetMapping("list")
-    public Result list(){
-        List<TbAdmin> list = iTbAdminService.list();
-        return success(list);
+
+    @ApiOperation("管理员信息更改")
+    @PostMapping("update")
+    public Result update(TbAdmin tbAdmin){
+        return decide(iTbAdminService.updateById(tbAdmin));
     }
 
 }

@@ -27,7 +27,7 @@ import lombok.Setter;
 @TableName("tb_user")
 @ApiModel(value = "TbUser对象", description = "")
 @EqualsAndHashCode(callSuper = true)
-public class TbUser extends SecureUser implements Serializable {
+public class SysUser extends SecureUser implements Serializable {
 
 
     @ApiModelProperty("角色")

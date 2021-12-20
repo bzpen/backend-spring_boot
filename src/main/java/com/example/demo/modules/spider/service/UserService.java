@@ -4,9 +4,7 @@ package com.example.demo.modules.spider.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.User;
-import com.example.demo.modules.sys.entity.TbUser;
 
-import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 

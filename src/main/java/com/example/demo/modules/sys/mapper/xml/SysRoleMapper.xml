@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.modules.sys.mapper.TbRoleMapper">
+<mapper namespace="com.example.demo.modules.sys.mapper.SysRoleMapper">
 
-    <select id="selectRoleByUserId" parameterType="string" resultType="com.example.demo.modules.sys.entity.TbRole">
+    <select id="selectRoleByUserId" parameterType="string" resultType="com.example.demo.modules.sys.entity.SysRole">
         select * from tb_role
         where  id= #{roleId} limit 1
     </select>

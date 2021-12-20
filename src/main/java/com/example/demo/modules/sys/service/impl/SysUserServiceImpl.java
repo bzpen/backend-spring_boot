@@ -1,8 +1,8 @@
 package com.example.demo.modules.sys.service.impl;
 
-import com.example.demo.modules.sys.entity.TbUser;
-import com.example.demo.modules.sys.mapper.TbUserMapper;
-import com.example.demo.modules.sys.service.ITbUserService;
+import com.example.demo.modules.sys.entity.SysUser;
+import com.example.demo.modules.sys.mapper.SysUserMapper;
+import com.example.demo.modules.sys.service.SysUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -18,18 +18,18 @@ import javax.annotation.Resource;
  * @since 2021-12-08
  */
 @Service
-public class TbUserServiceImpl extends ServiceImpl<TbUserMapper, TbUser> implements ITbUserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
     @Resource
-    TbUserMapper tbUserMapper;
+    SysUserMapper sysUserMapper;
 
     @Override
     public UserDetails selectByUsername(String username) {
-        return tbUserMapper.selectByUsername(username);
+        return sysUserMapper.selectByUsername(username);
     }
 
     @Override
     public UserDetails getByEmail(String email) {
-        return tbUserMapper.selectByEmail(email);
+        return sysUserMapper.selectByEmail(email);
     }
 }
