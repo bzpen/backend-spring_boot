@@ -1,14 +1,12 @@
 package com.example.demo.common.config;
 
 import com.example.demo.common.constant.Constant;
-import com.example.demo.common.email.sucrity.authentication.email.EmailAuthenticationFilter;
-import com.example.demo.common.email.sucrity.authentication.email.EmailAuthenticationProvider;
-import com.example.demo.common.email.sucrity.authentication.user.UserAuthenticationFilter;
+import com.example.demo.common.email.config.AdminAuthenticationSecurityConfig;
+import com.example.demo.common.email.config.EmailCodeAuthenticationSecurityConfig;
 import com.example.demo.common.secure.process.*;
 import com.example.demo.common.secure.uutoken.SecureUserTokenSupport;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -72,6 +70,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
+     * 用户邮箱登录
+     */
+    @Resource
+    public EmailCodeAuthenticationSecurityConfig emailCodeAuthenticationSecurityConfig;
+
+    /**
+     * 管理员登录
+     */
+    @Resource
+    public AdminAuthenticationSecurityConfig adminAuthenticationSecurityConfig;
+    /**
      * Web Configure 核心配置
      */
     @Override
@@ -111,7 +120,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 // 配置没有权限自定义处理类
                 .exceptionHandling().accessDeniedHandler(secureAuthAccessDeniedHandler);
-
+        //用户邮箱登录
+        http.apply(emailCodeAuthenticationSecurityConfig);
+        //管理员登录
+        http.apply(adminAuthenticationSecurityConfig);
         // 取消跨站请求伪造防护
         http.csrf().disable();
 
@@ -126,6 +138,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 开启 Security 跨域
         http.cors();
+
     }
 
 //    @Bean
@@ -135,11 +148,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    }
 //
 //    @Bean
-//    public EmailAuthenticationFilter emailCodeAuthenticationFilter() {
-//        EmailAuthenticationFilter emailCodeAuthenticationFilter = new EmailAuthenticationFilter();
-//        emailCodeAuthenticationFilter.setAuthenticationSuccessHandler(secureAuthenticationSuccessHandler);
-//        emailCodeAuthenticationFilter.setAuthenticationFailureHandler(secureAuthenticationFailureHandler);
-//        return emailCodeAuthenticationFilter;
+//    public EmailAuthenticationFilter emailAuthenticationFilter(){
+//        EmailAuthenticationFilter emailAuthenticationFilter=new EmailAuthenticationFilter();
+//        emailAuthenticationFilter.setAuthenticationSuccessHandler(secureAuthenticationSuccessHandler);
+//        emailAuthenticationFilter.setAuthenticationFailureHandler(secureAuthenticationFailureHandler);
+//        return emailAuthenticationFilter;
 //    }
 //
 //    @Bean

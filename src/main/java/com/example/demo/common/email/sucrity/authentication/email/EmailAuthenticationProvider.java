@@ -3,10 +3,14 @@ package com.example.demo.common.email.sucrity.authentication.email;
 import com.example.demo.modules.sys.service.ITbUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * 邮件验证过滤器
@@ -17,8 +21,11 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 public class EmailAuthenticationProvider implements AuthenticationProvider {
 
-    @Autowired
-    ITbUserService tbUserService;
+    private ITbUserService tbUserService;
+
+    public EmailAuthenticationProvider(ITbUserService tbUserService){
+        this.tbUserService=tbUserService;
+    }
 
     /**
      * 认证
@@ -37,10 +44,9 @@ public class EmailAuthenticationProvider implements AuthenticationProvider {
         // 从数据库查询 数据
         UserDetails user = tbUserService.getByEmail((String) token.getPrincipal());
 
-
         System.out.println(token.getPrincipal());
         if (user == null) {
-            throw new InternalAuthenticationServiceException("无法获取用户信息");
+            throw new BadCredentialsException("验证码错误");
         }
         System.out.println(user.getAuthorities());
 

@@ -83,7 +83,7 @@ public class SecureUser extends BaseDomain implements UserDetails,CredentialsCon
     /**
      * 用户邮箱
      */
-    @TableField("email")
+    @TableField(exist = false)
     private String email;
     /**
      * 权限

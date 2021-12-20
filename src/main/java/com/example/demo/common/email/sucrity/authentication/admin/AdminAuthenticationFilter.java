@@ -1,4 +1,4 @@
-package com.example.demo.common.email.sucrity.authentication.user;
+package com.example.demo.common.email.sucrity.authentication.admin;
 
 import com.example.demo.common.email.service.EmailCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +25,14 @@ import java.util.ArrayList;
  * @Email 3118659412@qq.com
  * @since 2021/12/11
  */
-public class UserAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+public class AdminAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+
 
     public static final String SPRING_SECURITY_FORM_USERNAME_KEY = "username";
 
     public static final String SPRING_SECURITY_FORM_PASSWORD_KEY = "password";
 
-    private static final AntPathRequestMatcher DEFAULT_ANT_PATH_REQUEST_MATCHER = new AntPathRequestMatcher("/user/login",
+    private static final AntPathRequestMatcher DEFAULT_ANT_PATH_REQUEST_MATCHER = new AntPathRequestMatcher("/admin/login",
             "POST");
 
     private String usernameParameter = SPRING_SECURITY_FORM_USERNAME_KEY;
@@ -40,11 +41,11 @@ public class UserAuthenticationFilter extends AbstractAuthenticationProcessingFi
 
     private boolean postOnly = true;
 
-    public UserAuthenticationFilter() {
+    public AdminAuthenticationFilter() {
         super(DEFAULT_ANT_PATH_REQUEST_MATCHER);
     }
 
-    public UserAuthenticationFilter(AuthenticationManager authenticationManager) {
+    public AdminAuthenticationFilter(AuthenticationManager authenticationManager) {
         super(DEFAULT_ANT_PATH_REQUEST_MATCHER, authenticationManager);
     }
 
@@ -59,7 +60,7 @@ public class UserAuthenticationFilter extends AbstractAuthenticationProcessingFi
         username = username.trim();
         String password = obtainPassword(request);
         password = (password != null) ? password : "";
-        UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
+        AdminAuthenticationToken authRequest = new AdminAuthenticationToken(username, password,new ArrayList<>());
         // Allow subclasses to set the "details" property
         setDetails(request, authRequest);
         return this.getAuthenticationManager().authenticate(authRequest);
@@ -77,7 +78,7 @@ public class UserAuthenticationFilter extends AbstractAuthenticationProcessingFi
     }
 
 
-    protected void setDetails(HttpServletRequest request, UsernamePasswordAuthenticationToken authRequest) {
+    protected void setDetails(HttpServletRequest request, AdminAuthenticationToken authRequest) {
         authRequest.setDetails(this.authenticationDetailsSource.buildDetails(request));
     }
 
