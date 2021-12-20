@@ -44,6 +44,7 @@ public interface Constant {
                 "/swagger-ui/",
                 "/admin/**",
                 "/static/**/**/**",
+                "/static/**/**",
                 "/spider/image",
         };
 

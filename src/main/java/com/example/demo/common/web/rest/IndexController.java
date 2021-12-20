@@ -1,6 +1,7 @@
 package com.example.demo.common.web.rest;
 
 import com.example.demo.common.constant.Constant;
+import com.example.demo.common.web.domain.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,4 +23,9 @@ public class IndexController {
         return Constant.Controller.INDEX_MSG;
     }
 
+    @GetMapping({"token"})
+    @ApiOperation("主页")
+    public Result token() {
+        return Result.success();
+    }
 }
