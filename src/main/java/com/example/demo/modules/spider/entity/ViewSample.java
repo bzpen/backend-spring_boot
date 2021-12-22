@@ -42,12 +42,12 @@ public class ViewSample implements Serializable {
 
     @ExcelIgnore
     @ApiModelProperty("蜘蛛编号")
-    @TableField(exist = false)
+    @TableField("spider")
     private Integer spider;
 
     @ExcelIgnore
     @ApiModelProperty("上传者用户id")
-    @TableField(exist = false)
+    @TableField("user")
     private Integer user;
 
     @ExcelProperty("基因类型")
@@ -74,12 +74,12 @@ public class ViewSample implements Serializable {
     @ExcelProperty("采样经度")
     @ApiModelProperty("采样经度")
     @TableField("j_du")
-    private String jDu;
+    private String jdu;
 
     @ExcelProperty("采样纬度")
     @ApiModelProperty("采样纬度")
     @TableField("w_du")
-    private String wDu;
+    private String wdu;
 
     @ExcelProperty("样本序列")
     @ApiModelProperty("样本序列")

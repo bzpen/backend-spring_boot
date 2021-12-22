@@ -144,15 +144,15 @@ public class TbSampleServiceImpl extends ServiceImpl<TbSampleMapper, TbSample> i
                 failList.add(viewSample);
                 continue;
             }
-            viewSample.setJDu(coordinates.getJ_du());
-            viewSample.setWDu(coordinates.getW_du());
+            viewSample.setJdu(coordinates.getJ_du());
+            viewSample.setWdu(coordinates.getW_du());
 
             TbSample tbSample =TbSample.builder()
                     .user(viewSample.getUser())
                     .remark(viewSample.getRemark())
                     .length(viewSample.getList().length())
-                    .wDu(viewSample.getWDu())
-                    .jDu(viewSample.getJDu())
+                    .wDu(viewSample.getWdu())
+                    .jDu(viewSample.getJdu())
                     .locations(viewSample.getLocations())
                     .time(viewSample.getTime())
                     .spider(viewSample.getSpider())
@@ -201,5 +201,16 @@ public class TbSampleServiceImpl extends ServiceImpl<TbSampleMapper, TbSample> i
     @Override
     public boolean delList(List<ViewSample> list) {
         return tbSampleMapper.delList(list);
+    }
+
+    /**
+     * 更 新 序 列
+     *
+     * @param entity
+     * @return
+     */
+    @Override
+    public boolean updateById(TbSample entity) {
+        return super.updateById(entity);
     }
 }
