@@ -12,7 +12,7 @@ import com.example.demo.common.web.base.BaseController;
  * </p>
  *
  * @author kaito kuroba
- * @since 2021-12-15
+ * @since 2021-12-21
  */
 @RestController
 @RequestMapping("/log")

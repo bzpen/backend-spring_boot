@@ -28,6 +28,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         return sysUserMapper.selectByUsername(username);
     }
 
+
     @Override
     public UserDetails getByEmail(String email) {
         return sysUserMapper.selectByEmail(email);

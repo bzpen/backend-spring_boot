@@ -142,4 +142,31 @@ public interface Constant {
          */
         String EMAIL_REAR = "，有效时间为5分钟(若非本人操作，可忽略该条邮件)";
     }
+
+    interface Log{
+
+        /**
+         * 登 录 角 色
+         *
+         */
+        String ROLE_ADMIN = "管理员";
+
+        String ROLE_USER = "用户";
+
+        /**
+         * 操作
+         *
+         */
+        String ACTION_LOGIN = "登录";
+
+        String ACTION_LOGOUT = "退出登录";
+
+        String ACTION_DEL = "删除数据";
+
+        String ACTION_ADD = "添加数据";
+
+        String ACTION_UPDATE = "更改数据";
+
+    }
+
 }

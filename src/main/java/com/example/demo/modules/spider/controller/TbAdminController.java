@@ -3,6 +3,7 @@ package com.example.demo.modules.spider.controller;
 
 import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.TbAdmin;
+import com.example.demo.modules.spider.entity.ViewAdmin;
 import com.example.demo.modules.spider.service.ITbAdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -43,7 +44,7 @@ public class TbAdminController extends BaseController {
 
     @ApiOperation("批量删除")
     @PostMapping("delList")
-    public Result delList(@RequestBody List<Integer> list){
+    public Result delList(@RequestBody List<ViewAdmin> list){
         return decide(iTbAdminService.delList(list));
     }
 

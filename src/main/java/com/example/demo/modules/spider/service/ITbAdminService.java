@@ -3,6 +3,7 @@ package com.example.demo.modules.spider.service;
 import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.TbAdmin;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.demo.modules.spider.entity.ViewAdmin;
 
 import java.util.List;
 
@@ -22,5 +23,5 @@ public interface ITbAdminService extends IService<TbAdmin> {
      * @param list
      * @return
      */
-    boolean delList(List<Integer> list);
+    boolean delList(List<ViewAdmin> list);
 }

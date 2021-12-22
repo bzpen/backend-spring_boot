@@ -19,7 +19,7 @@ import java.util.Date;
 @Data
 @Builder
 @TableName("tb_user")
-public class User {
+public class TbUser {
 
     @ApiModelProperty("用户编号")
     @TableId(value = "id", type = IdType.AUTO)
@@ -43,7 +43,7 @@ public class User {
 
     @ApiModelProperty("用户最近登录时间")
     @TableField(value = "upLoginTime")
-    private Date upLoginTime;
+    private String upLoginTime;
 
     @ApiModelProperty("用户注册时间")
     @TableField(value = "registTime")

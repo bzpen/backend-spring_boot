@@ -2,6 +2,7 @@ package com.example.demo.modules.spider.mapper;
 
 import com.example.demo.modules.spider.entity.TbAdmin;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.demo.modules.spider.entity.ViewAdmin;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -23,5 +24,5 @@ public interface TbAdminMapper extends BaseMapper<TbAdmin> {
      * @param list
      * @return
      */
-    boolean delList(List<Integer> list);
+    boolean delList(List<ViewAdmin> list);
 }

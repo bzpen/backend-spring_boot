@@ -72,7 +72,6 @@ public class FileUploadUtil {
                     viewSample.setName(row.getCell(1).toString());
                     viewSample.setGenetic(row.getCell(2).toString());
 
-
                     DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                     LocalDateTime.parse(row.getCell(3).toString(),df);
                     viewSample.setTime(LocalDateTime.parse(row.getCell(3).toString(),df));

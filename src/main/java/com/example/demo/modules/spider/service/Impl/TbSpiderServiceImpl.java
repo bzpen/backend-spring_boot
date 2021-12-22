@@ -1,7 +1,6 @@
 package com.example.demo.modules.spider.service.Impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.example.demo.modules.spider.entity.Spider;
 import com.example.demo.modules.spider.entity.TbSpider;
 import com.example.demo.modules.spider.mapper.TbSpiderMapper;
 import com.example.demo.modules.spider.service.ITbSpiderService;
