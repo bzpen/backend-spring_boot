@@ -2,6 +2,7 @@ package com.example.demo.modules.spider.mapper;
 
 import com.example.demo.modules.spider.entity.TbSample;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.demo.modules.spider.entity.ViewSample;
 import com.example.demo.modules.spider.param.MapSample;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -24,5 +25,13 @@ public interface TbSampleMapper extends BaseMapper<TbSample> {
      * @return
      */
     List<MapSample> getMapList();
+
+    /**
+     * 批 量 删 除 序 列
+     *
+     * @param list
+     * @return
+     */
+    boolean delList(List<ViewSample> list);
 
 }

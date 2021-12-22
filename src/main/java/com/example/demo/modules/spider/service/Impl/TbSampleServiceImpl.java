@@ -191,4 +191,15 @@ public class TbSampleServiceImpl extends ServiceImpl<TbSampleMapper, TbSample> i
     public List<MapSample> getMapList() {
         return tbSampleMapper.getMapList();
     }
+
+    /**
+     * 批 量 删 除 序 列
+     *
+     * @param list
+     * @return
+     */
+    @Override
+    public boolean delList(List<ViewSample> list) {
+        return tbSampleMapper.delList(list);
+    }
 }

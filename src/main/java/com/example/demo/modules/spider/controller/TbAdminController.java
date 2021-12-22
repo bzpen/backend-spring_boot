@@ -48,7 +48,6 @@ public class TbAdminController extends BaseController {
         return decide(iTbAdminService.delList(list));
     }
 
-
     @ApiOperation("管理员信息更改")
     @PostMapping("update")
     public Result update(TbAdmin tbAdmin){

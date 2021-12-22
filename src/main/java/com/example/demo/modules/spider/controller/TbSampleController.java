@@ -7,6 +7,7 @@ import com.example.demo.common.web.base.echarts.ECharsService;
 import com.example.demo.common.web.base.echarts.MapECharts;
 import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.TbSample;
+import com.example.demo.modules.spider.entity.ViewAdmin;
 import com.example.demo.modules.spider.entity.ViewSample;
 import com.example.demo.modules.spider.service.ITbSampleService;
 import io.swagger.annotations.Api;
@@ -91,5 +92,17 @@ public class TbSampleController extends BaseController {
     public Result getMapEChars(){
         List<MapECharts> list=eCharsService.getEChars();
         return success(list);
+    }
+
+    @ApiOperation("删除单个序列")
+    @GetMapping("del/{id}")
+    public Result del(@PathVariable String id){
+        return decide(iTbSampleService.removeById(id));
+    }
+
+    @ApiOperation("批量删除")
+    @PostMapping("delList")
+    public Result delList(@RequestBody List<ViewSample> list){
+        return decide(iTbSampleService.delList(list));
     }
 }

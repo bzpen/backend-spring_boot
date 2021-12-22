@@ -6,4 +6,12 @@
         SELECT DISTINCT locations,j_du,w_du FROM tb_sample
     </select>
 
+
+    <delete id="delList" parameterType="java.util.List">
+        DELETE FROM tb_sample WHERE id IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item.id}
+        </foreach>
+    </delete>
+
 </mapper>
