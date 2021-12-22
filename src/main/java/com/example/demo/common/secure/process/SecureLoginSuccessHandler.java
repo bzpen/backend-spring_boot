@@ -50,12 +50,12 @@ public class SecureLoginSuccessHandler implements AuthenticationSuccessHandler {
                 .registTime(secureUser.getRegistTime())
                 .upLoginTime(secureUser.getUpLoginTime())
                 .build();
-        Log log = Log.builder()
-                .role(secureUser.getRole().getId())
-                .action(Constant.Log.ACTION_LOGIN)
-                .user(secureUser.getUsername())
-                .build();
-        iLogService.save(log);
+//        Log log = Log.builder()
+//                .role(secureUser.getRole().getId())
+//                .action(Constant.Log.ACTION_LOGIN)
+//                .user(secureUser.getUsername())
+//                .build();
+//        iLogService.save(log);
         ServletUtil.writeJson(Result.success(ResultCode.LOGIN_SUCCESS,resultToken));
     }
 

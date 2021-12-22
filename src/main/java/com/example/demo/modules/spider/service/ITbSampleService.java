@@ -62,5 +62,12 @@ public interface ITbSampleService extends IService<TbSample> {
      */
     List<MapSample> getMapList();
 
+    /**
+     * 批 量 删 除 序 列
+     *
+     * @param list
+     * @return
+     */
+    boolean delList(List<ViewSample> list);
 
 }
