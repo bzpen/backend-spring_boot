@@ -105,4 +105,11 @@ public class TbSampleController extends BaseController {
     public Result delList(@RequestBody List<ViewSample> list){
         return decide(iTbSampleService.delList(list));
     }
+
+
+    @ApiOperation("更改数据")
+    @PostMapping("update")
+    public Result update(TbSample tbSample){
+        return decide(iTbSampleService.updateById(tbSample));
+    }
 }
