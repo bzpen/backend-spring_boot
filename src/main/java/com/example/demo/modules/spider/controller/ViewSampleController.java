@@ -57,6 +57,11 @@ public class ViewSampleController extends BaseController {
         return Result.success(list);
     }
 
+    @GetMapping("get/{id}")
+    @ApiOperation("获取单个基因视图数据")
+    public Result get(@PathVariable String id){
+        return success(iViewSampleService.getById(id));
+    }
 
     @PostMapping("exportExcel")
     @ApiOperation("导出 Excel ")
