@@ -4,6 +4,7 @@ import com.example.demo.modules.spider.entity.ViewSample;
 import com.example.demo.modules.spider.entity.ViewUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.demo.modules.spider.param.PageSampleRequest;
+import com.example.demo.modules.spider.param.PageUserRequest;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -26,6 +27,6 @@ public interface ViewUserMapper extends BaseMapper<ViewUser> {
      * @param request
      * @return
      */
-    List<ViewSample> selectViewSample(PageSampleRequest request);
+    List<ViewSample> selectViewUser(PageUserRequest request);
 
 }

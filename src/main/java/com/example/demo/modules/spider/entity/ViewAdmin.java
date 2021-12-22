@@ -60,7 +60,7 @@ public class ViewAdmin implements Serializable {
     @ExcelProperty("最近登录时间")
     @ApiModelProperty("用户最近登录时间")
     @TableField(value = "upLoginTime")
-    private Date upLoginTime;
+    private String upLoginTime;
 
     @ExcelProperty("注册时间")
     @ApiModelProperty("用户注册时间")

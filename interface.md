@@ -156,7 +156,7 @@
 
 
 
-## 用户管理        ip+"/user"
+## 用户管理        ip+"/tbUser"
 
 #### 1、获取用户列表         "/getUsers"    POST
 

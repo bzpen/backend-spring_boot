@@ -6,7 +6,6 @@ import com.example.demo.common.web.base.coordinates.CoordinatesService;
 import com.example.demo.common.web.base.echarts.ECharsService;
 import com.example.demo.common.web.base.echarts.MapECharts;
 import com.example.demo.common.web.domain.Result;
-import com.example.demo.modules.spider.entity.Sample;
 import com.example.demo.modules.spider.entity.TbSample;
 import com.example.demo.modules.spider.entity.ViewSample;
 import com.example.demo.modules.spider.service.ITbSampleService;

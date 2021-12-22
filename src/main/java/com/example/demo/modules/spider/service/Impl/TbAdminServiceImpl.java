@@ -1,7 +1,11 @@
 package com.example.demo.modules.spider.service.Impl;
 
+import com.example.demo.common.constant.Constant;
+import com.example.demo.modules.spider.entity.Log;
 import com.example.demo.modules.spider.entity.TbAdmin;
+import com.example.demo.modules.spider.entity.ViewAdmin;
 import com.example.demo.modules.spider.mapper.TbAdminMapper;
+import com.example.demo.modules.spider.service.ILogService;
 import com.example.demo.modules.spider.service.ITbAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,6 +31,9 @@ public class TbAdminServiceImpl extends ServiceImpl<TbAdminMapper, TbAdmin> impl
     @Resource
     TbAdminMapper tbAdminMapper;
 
+    @Resource
+    ILogService iLogService;
+
     @Override
     public boolean save(TbAdmin entity) {
         TbAdmin admin=TbAdmin.builder()
@@ -45,7 +52,7 @@ public class TbAdminServiceImpl extends ServiceImpl<TbAdminMapper, TbAdmin> impl
 
 
     @Override
-    public boolean delList(List<Integer> list) {
+    public boolean delList(List<ViewAdmin> list) {
         return tbAdminMapper.delList(list);
     }
 }
