@@ -63,4 +63,5 @@ public interface ITbSpiderService extends IService<TbSpider> {
      * @return
      */
     Boolean delImage(String filePath);
+
 }
