@@ -59,4 +59,8 @@ public class ViewSampleServiceImpl extends ServiceImpl<ViewSampleMapper, ViewSam
         return Pageable.of(pageRequest,() -> viewSampleMapper.selectUserViewSample(secureUser.getUsername()));
     }
 
+    @Override
+    public PageResponse<ViewSample> screen(PageSampleRequest request) {
+        return Pageable.of(request,() -> viewSampleMapper.screen(request));
+    }
 }
