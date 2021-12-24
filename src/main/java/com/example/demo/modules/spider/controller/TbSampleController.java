@@ -100,7 +100,6 @@ public class TbSampleController extends BaseController {
         return decide(iTbSampleService.removeById(id));
     }
 
-
     @ApiOperation("批量删除")
     @PostMapping("delList")
     public Result delList(@RequestBody List<ViewSample> list){
