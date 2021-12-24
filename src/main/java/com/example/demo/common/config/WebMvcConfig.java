@@ -11,6 +11,8 @@ import org.springframework.web.servlet.config.annotation.*;
 
 import java.io.Serializable;
 
+import static com.example.demo.common.constant.Constant.Img.REAL_IMG_PATH;
+
 
 /**
  * @author kaito kuroba
@@ -19,10 +21,6 @@ import java.io.Serializable;
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-
-//    public static final String REAL_IMG_PATH = "D:/Vue毕设项目/毕设后台/img/";
-    public static final String REAL_IMG_PATH = "/root/java/java_backend/img/";
-    public static final String VIRTUAL_IMG_PATH = "/static/spider_photo/";
 
 
     /***
@@ -45,25 +43,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
         };
     }
 
-//    /***
-//     * 自定义拦截器
-//     * @param registry
-//     */
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new TokenInterceptor())
-//                .addPathPatterns("/**")
-//                .excludePathPatterns(openApi);
-//    }
-
     /**
      * 添加静态资源文件，外部可以直接访问地址
      * @param registry
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("file:"+REAL_IMG_PATH);
+        registry.addResourceHandler("/static/**").addResourceLocations("file:"+ REAL_IMG_PATH);
     }
+
 
     @Bean
     public RedisTemplate<String, Serializable> redisTemplate(LettuceConnectionFactory connectionFactory){

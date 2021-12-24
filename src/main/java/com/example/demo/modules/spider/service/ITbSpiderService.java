@@ -1,8 +1,10 @@
 package com.example.demo.modules.spider.service;
 
+import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.TbSample;
 import com.example.demo.modules.spider.entity.TbSpider;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
@@ -24,4 +26,23 @@ public interface ITbSpiderService extends IService<TbSpider> {
      * @return
      */
     TbSpider getSpider(String name);
+
+    /**
+     * 新 增 蜘 蛛 种 类
+     *
+     * @param tbSpider
+     * @return
+     */
+    Result add(TbSpider tbSpider);
+
+
+    /**
+     * 插 入 蜘 蛛 图 片
+     *
+     * @param file
+     * @param file_path
+     * @return
+     */
+    Result add(MultipartFile file, String file_path);
+
 }
