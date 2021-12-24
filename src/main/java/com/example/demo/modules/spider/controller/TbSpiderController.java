@@ -6,6 +6,7 @@ import com.example.demo.modules.spider.entity.TbSpider;
 import com.example.demo.modules.spider.service.ITbSpiderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.data.redis.core.index.GeoIndexed;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.common.web.base.BaseController;
@@ -65,6 +66,13 @@ public class TbSpiderController extends BaseController {
     public Result insertPhoto(MultipartFile file, String file_path){
         System.out.println(file_path);
         return iTbSpiderService.add(file,file_path);
+    }
+
+    @ApiOperation("删除图片")
+    @GetMapping("/delImage")
+    public Result delImage(String filePath){
+        System.out.println(filePath);
+        return decide(iTbSpiderService.delImage(filePath));
     }
 
     /**

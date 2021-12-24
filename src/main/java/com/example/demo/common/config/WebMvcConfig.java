@@ -1,6 +1,7 @@
 package com.example.demo.common.config;
 
 import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
+import com.example.demo.common.constant.Constant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
@@ -11,8 +12,6 @@ import org.springframework.web.servlet.config.annotation.*;
 
 import java.io.Serializable;
 
-import static com.example.demo.common.constant.Constant.Img.REAL_IMG_PATH;
-
 
 /**
  * @author kaito kuroba
@@ -21,6 +20,7 @@ import static com.example.demo.common.constant.Constant.Img.REAL_IMG_PATH;
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+
 
 
     /***
@@ -43,15 +43,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
         };
     }
 
+
     /**
      * 添加静态资源文件，外部可以直接访问地址
      * @param registry
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("file:"+ REAL_IMG_PATH);
+        registry.addResourceHandler("/static/**").addResourceLocations("file:"+ Constant.Img.REAL_IMG_PATH);
     }
-
 
     @Bean
     public RedisTemplate<String, Serializable> redisTemplate(LettuceConnectionFactory connectionFactory){
