@@ -179,7 +179,7 @@ public interface Constant {
         /**
          * 图 片 映 射 地 址
          */
-        String VIRTUAL_IMG_PATH = "/static/spider_photo/";
+        String VIRTUAL_IMG_PATH = "/static/";
 
         /**
          * 蜘 蛛 图 片
