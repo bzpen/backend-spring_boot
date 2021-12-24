@@ -65,7 +65,7 @@ public class TbSpiderServiceImpl extends ServiceImpl<TbSpiderMapper, TbSpider> i
     public Result add(TbSpider spider) {
         String file_path= Long.toString(System.currentTimeMillis());
         try{
-            if(this.getSpider(spider.getName()) == null){
+            if(this.getSpider(spider.getName()) != null){
                 return Result.failure("种类名称重复！");
             }
             spider.setSample(0);
