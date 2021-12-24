@@ -90,7 +90,7 @@ public class TbSpiderServiceImpl extends ServiceImpl<TbSpiderMapper, TbSpider> i
                 save.mkdir();
                 String file_Name = file.getOriginalFilename();
                 if (file_Name.endsWith("jpg") || file_Name.endsWith("png") || file_Name.endsWith("jpeg")) {
-                    file.transferTo(Paths.get(save + file_path + "/" + Long.toString(System.currentTimeMillis())));
+                    file.transferTo(Paths.get(save  + "/" + Long.toString(System.currentTimeMillis())));
                     return Result.success();
                 }
                 return Result.failure("图片格式只能为jpg/png/jpeg");
