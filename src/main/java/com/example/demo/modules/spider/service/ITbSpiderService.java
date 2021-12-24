@@ -54,4 +54,13 @@ public interface ITbSpiderService extends IService<TbSpider> {
      * @return
      */
     SpiderImgPath getSpiderImage(Serializable id);
+
+
+    /**
+     * 删 除 图 片
+     *
+     * @param filePath
+     * @return
+     */
+    Boolean delImage(String filePath);
 }

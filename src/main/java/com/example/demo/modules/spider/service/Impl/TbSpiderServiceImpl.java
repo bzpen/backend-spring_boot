@@ -124,4 +124,17 @@ public class TbSpiderServiceImpl extends ServiceImpl<TbSpiderMapper, TbSpider> i
         }
         return spiderImgPath;
     }
+
+    /**
+     * 删 除 图 片
+     *
+     * @param filePath
+     * @return
+     */
+    @Override
+    public Boolean delImage(String filePath) {
+        File save = new File(REAL_IMG_PATH + IMG_SPIDER + filePath);
+        save.delete();
+        return true;
+    }
 }

@@ -174,6 +174,7 @@ public interface Constant {
         /**
          *  数 据 库 图 片 存 放 地 址
          */
+//        String REAL_IMG_PATH = "D:/Vue毕设项目/毕设后台/img/";
         String REAL_IMG_PATH = "/root/java/java_backend/img/";
 
         /**
