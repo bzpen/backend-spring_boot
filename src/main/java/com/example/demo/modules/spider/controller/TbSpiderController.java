@@ -40,7 +40,7 @@ public class TbSpiderController extends BaseController {
     @ApiOperation("获取单个蜘蛛种类数据")
     @GetMapping("get/{id}")
     public Result get(@PathVariable String id){
-        return success(iTbSpiderService.getById(id));
+        return success(iTbSpiderService.getSpiderImage(id));
     }
 
     /**
@@ -49,6 +49,7 @@ public class TbSpiderController extends BaseController {
      * @return
      */
     @PostMapping("/add")
+    @ApiOperation("添加记录")
     public Result insert(TbSpider spider){
         return iTbSpiderService.add(spider);
     }
@@ -60,9 +61,21 @@ public class TbSpiderController extends BaseController {
      * @return
      */
     @PostMapping("/image")
+    @ApiOperation("图片插入")
     public Result insertPhoto(MultipartFile file, String file_path){
         System.out.println(file_path);
         return iTbSpiderService.add(file,file_path);
+    }
+
+    /**
+     * 数 据 删 除
+     * @param id
+     * @return
+     */
+    @GetMapping("del/{id}")
+    @ApiOperation("数据删除")
+    public Result del(@PathVariable String id){
+        return success(iTbSpiderService.removeById(id));
     }
 
 }

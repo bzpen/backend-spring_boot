@@ -1,19 +1,21 @@
 package com.example.demo.modules.spider.service.Impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.demo.common.constant.Constant;
 import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.TbSpider;
 import com.example.demo.modules.spider.mapper.TbSpiderMapper;
+import com.example.demo.modules.spider.param.SpiderImgPath;
 import com.example.demo.modules.spider.service.ITbSpiderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.Serializable;
 import java.nio.file.Paths;
 
-import static com.example.demo.common.constant.Constant.Img.IMG_SPIDER;
-import static com.example.demo.common.constant.Constant.Img.REAL_IMG_PATH;
+import static com.example.demo.common.constant.Constant.Img.*;
 
 /**
  * <p>
@@ -98,5 +100,26 @@ public class TbSpiderServiceImpl extends ServiceImpl<TbSpiderMapper, TbSpider> i
             e.printStackTrace();
         }
         return Result.failure("插入失败！");
+    }
+
+    /**
+     * 获 取 蜘 蛛 种 类 详 情
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public SpiderImgPath getSpiderImage(Serializable id) {
+        SpiderImgPath spiderImgPath= new SpiderImgPath();
+
+        spiderImgPath.setSpider(super.getById(id));
+
+        if(spiderImgPath.getSpider()!=null){
+            File img_path= new File(REAL_IMG_PATH + IMG_SPIDER + spiderImgPath.getSpider().getPhotoPath());
+            for(String path:img_path.list()){
+                spiderImgPath.getImg_path().add(VIRTUAL_IMG_PATH + IMG_SPIDER + spiderImgPath.getSpider().getPhotoPath() +"/"+path);
+            }
+        }
+        return spiderImgPath;
     }
 }
