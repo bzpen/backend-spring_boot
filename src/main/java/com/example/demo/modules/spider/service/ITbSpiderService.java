@@ -4,9 +4,11 @@ import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.TbSample;
 import com.example.demo.modules.spider.entity.TbSpider;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.demo.modules.spider.param.SpiderImgPath;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * <p>
@@ -45,4 +47,11 @@ public interface ITbSpiderService extends IService<TbSpider> {
      */
     Result add(MultipartFile file, String file_path);
 
+    /**
+     * 获 取 蜘 蛛 种 类 详 情
+     *
+     * @param id
+     * @return
+     */
+    SpiderImgPath getSpiderImage(Serializable id);
 }
