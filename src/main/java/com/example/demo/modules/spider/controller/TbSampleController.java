@@ -9,6 +9,7 @@ import com.example.demo.common.web.domain.Result;
 import com.example.demo.modules.spider.entity.TbSample;
 import com.example.demo.modules.spider.entity.ViewAdmin;
 import com.example.demo.modules.spider.entity.ViewSample;
+import com.example.demo.modules.spider.param.PageSampleRequest;
 import com.example.demo.modules.spider.service.ITbSampleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -48,7 +49,6 @@ public class TbSampleController extends BaseController {
     public Result add(TbSample sample, HttpServletRequest request) throws IOException{
         return iTbSampleService.add(sample,request);
     }
-
 
     @PostMapping("adds")
     @ApiOperation("excel数据批量上传")
@@ -113,4 +113,5 @@ public class TbSampleController extends BaseController {
     public Result update(TbSample tbSample){
         return decide(iTbSampleService.updateById(tbSample));
     }
+
 }

@@ -34,4 +34,12 @@ public interface ViewSampleMapper extends BaseMapper<ViewSample> {
      * @return
      */
     List<ViewSample> selectUserViewSample(String username);
+
+    /**
+     * 前台筛选实现
+     *
+     * @param request
+     * @return
+     */
+    List<ViewSample> screen(PageSampleRequest request);
 }

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.demo.modules.spider.param.PageSampleRequest;
 
 import javax.servlet.http.HttpServletRequest;
+    import java.util.List;
 
 /**
  * <p>
@@ -35,5 +36,13 @@ public interface IViewSampleService extends IService<ViewSample> {
     PageResponse<ViewSample> list_user(HttpServletRequest request,PageSampleRequest pageRequest);
 
 
+
+    /**
+     * 前台筛选实现
+     *
+     * @param request
+     * @return
+     */
+    PageResponse<ViewSample> screen(PageSampleRequest request);
 
 }

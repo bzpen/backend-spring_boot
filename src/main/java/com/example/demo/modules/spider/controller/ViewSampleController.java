@@ -80,4 +80,10 @@ public class ViewSampleController extends BaseController {
         return success();
     }
 
+    @PostMapping("screen")
+    @ApiOperation("筛选")
+    public Result screen(PageSampleRequest request){
+        PageResponse<ViewSample> list = iViewSampleService.screen(request);
+        return Result.success(list);
+    }
 }

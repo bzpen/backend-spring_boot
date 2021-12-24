@@ -24,4 +24,25 @@
         </where>
     </select>
 
+
+    <select id="screen" resultType="com.example.demo.modules.spider.entity.ViewSample">
+        select * from view_sample
+        <where>
+            <if test="username != null and username != ''">
+                and username like concat('%',#{username},'%')
+            </if>
+            <if test="name != null and name != ''">
+                and `name` = #{name}
+            </if>
+            <if test="genetic != null and genetic != ''">
+                and genetic = #{genetic}
+            </if>
+            <if test="startTime != null and startTime != ''">
+                AND `time` <![CDATA[>=]]> #{startTime}
+            </if>
+            <if test="stopTime != null and stopTime != ''">
+                AND `time` <![CDATA[<=]]> #{stopTime}
+            </if>
+        </where>
+    </select>
 </mapper>
