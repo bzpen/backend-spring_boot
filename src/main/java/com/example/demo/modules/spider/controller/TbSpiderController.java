@@ -6,12 +6,10 @@ import com.example.demo.modules.spider.entity.TbSpider;
 import com.example.demo.modules.spider.service.ITbSpiderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.common.web.base.BaseController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -43,6 +41,28 @@ public class TbSpiderController extends BaseController {
     @GetMapping("get/{id}")
     public Result get(@PathVariable String id){
         return success(iTbSpiderService.getById(id));
+    }
+
+    /**
+     * 插入一条新记录
+     * @param spider
+     * @return
+     */
+    @PostMapping("/add")
+    public Result insert(TbSpider spider){
+        return iTbSpiderService.add(spider);
+    }
+
+    /**
+     * 插入图片
+     * @param file
+     * @param file_path
+     * @return
+     */
+    @PostMapping("/image")
+    public Result insertPhoto(MultipartFile file, String file_path){
+        System.out.println(file_path);
+        return iTbSpiderService.add(file,file_path);
     }
 
 }

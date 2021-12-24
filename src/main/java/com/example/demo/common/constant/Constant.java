@@ -169,4 +169,30 @@ public interface Constant {
 
     }
 
+    interface Img{
+
+        /**
+         *  数 据 库 图 片 存 放 地 址
+         */
+        String REAL_IMG_PATH = "/root/java/java_backend/img/";
+
+        /**
+         * 图 片 映 射 地 址
+         */
+        String VIRTUAL_IMG_PATH = "/static/spider_photo/";
+
+        /**
+         * 蜘 蛛 图 片
+         */
+        String IMG_SPIDER = "spider_photo/";
+
+        /**
+         *
+         */
+        String IMG_USER = "user";
+
+        String IMG_ADMIN = "admin";
+
+    }
+
 }
