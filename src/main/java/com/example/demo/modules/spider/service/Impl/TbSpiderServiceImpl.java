@@ -8,6 +8,7 @@ import com.example.demo.modules.spider.mapper.TbSpiderMapper;
 import com.example.demo.modules.spider.param.SpiderImgPath;
 import com.example.demo.modules.spider.service.ITbSpiderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.velocity.shaded.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -91,7 +92,7 @@ public class TbSpiderServiceImpl extends ServiceImpl<TbSpiderMapper, TbSpider> i
                 save.mkdir();
                 String file_Name = file.getOriginalFilename();
                 if (file_Name.endsWith("jpg") || file_Name.endsWith("png") || file_Name.endsWith("jpeg")) {
-                    file.transferTo(Paths.get(save  + "/" + Long.toString(System.currentTimeMillis())));
+                    file.transferTo(Paths.get(save  + "/" + System.currentTimeMillis() + "." + FilenameUtils.getExtension(file_Name)));
                     return Result.success();
                 }
                 return Result.failure("图片格式只能为jpg/png/jpeg");
