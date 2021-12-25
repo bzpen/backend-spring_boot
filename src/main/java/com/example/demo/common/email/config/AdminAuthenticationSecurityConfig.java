@@ -4,6 +4,7 @@ import com.example.demo.common.email.sucrity.authentication.admin.AdminAuthentic
 import com.example.demo.common.email.sucrity.authentication.admin.AdminAuthenticationProvider;
 import com.example.demo.common.secure.process.SecureLoginFailureHandler;
 import com.example.demo.common.secure.process.SecureLoginSuccessHandler;
+import com.example.demo.modules.sys.mapper.SysRoleMapper;
 import com.example.demo.modules.sys.service.impl.SysAdminServiceImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
@@ -43,6 +44,9 @@ public class AdminAuthenticationSecurityConfig extends SecurityConfigurerAdapter
     @Resource
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Resource
+    SysRoleMapper sysRoleMapper;
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         super.configure(http);
@@ -51,7 +55,7 @@ public class AdminAuthenticationSecurityConfig extends SecurityConfigurerAdapter
         filter .setAuthenticationSuccessHandler(secureAuthenticationSuccessHandler);
         filter .setAuthenticationFailureHandler(secureAuthenticationFailureHandler);
 
-        AdminAuthenticationProvider provider = new AdminAuthenticationProvider(sysAdminService,bCryptPasswordEncoder) ;
+        AdminAuthenticationProvider provider = new AdminAuthenticationProvider(sysAdminService,bCryptPasswordEncoder,sysRoleMapper) ;
         http.authenticationProvider(provider)
                 .addFilterAfter(filter , UsernamePasswordAuthenticationFilter.class);
     }

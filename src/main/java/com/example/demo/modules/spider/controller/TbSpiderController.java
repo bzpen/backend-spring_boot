@@ -86,4 +86,10 @@ public class TbSpiderController extends BaseController {
         return success(iTbSpiderService.removeById(id));
     }
 
+    @ApiOperation("蜘蛛种类数据更改")
+    @PostMapping("update")
+    public Result update(TbSpider tbSpider){
+        return decide(iTbSpiderService.updateById(tbSpider));
+    }
+
 }

@@ -29,5 +29,5 @@ public interface SysUserService extends IService<SysUser> {
      * @param email
      * @return
      */
-    UserDetails getByEmail(@Param("email") String email);
+    SysUser getByEmail(@Param("email") String email);
 }

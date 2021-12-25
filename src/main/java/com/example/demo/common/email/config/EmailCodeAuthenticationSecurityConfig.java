@@ -5,6 +5,7 @@ import com.example.demo.common.email.sucrity.authentication.email.EmailAuthentic
 import com.example.demo.common.email.sucrity.authentication.email.EmailAuthenticationProvider;
 import com.example.demo.common.secure.process.SecureLoginFailureHandler;
 import com.example.demo.common.secure.process.SecureLoginSuccessHandler;
+import com.example.demo.modules.sys.mapper.SysRoleMapper;
 import com.example.demo.modules.sys.service.SysUserService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
@@ -44,6 +45,9 @@ public class EmailCodeAuthenticationSecurityConfig extends SecurityConfigurerAda
     @Resource
     private SysUserService sysUserService;
 
+    @Resource
+    SysRoleMapper sysRoleMapper;
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         super.configure(http);
@@ -52,7 +56,7 @@ public class EmailCodeAuthenticationSecurityConfig extends SecurityConfigurerAda
         filter .setAuthenticationSuccessHandler(secureAuthenticationSuccessHandler);
         filter .setAuthenticationFailureHandler(secureAuthenticationFailureHandler);
 
-        EmailAuthenticationProvider provider = new EmailAuthenticationProvider(sysUserService) ;
+        EmailAuthenticationProvider provider = new EmailAuthenticationProvider(sysUserService,sysRoleMapper) ;
         http.authenticationProvider(provider)
                 .addFilterAfter(filter , UsernamePasswordAuthenticationFilter.class);
     }
