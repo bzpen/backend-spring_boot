@@ -26,4 +26,8 @@ public class SysAdmin extends SecureUser implements Serializable {
     @ApiModelProperty("名字")
     @TableField("name")
     private String name;
+
+    @ApiModelProperty("角色")
+    @TableField("roleId")
+    private String roleId;
 }

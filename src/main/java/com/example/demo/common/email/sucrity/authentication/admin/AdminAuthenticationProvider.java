@@ -1,16 +1,25 @@
 package com.example.demo.common.email.sucrity.authentication.admin;
 
 
+import com.example.demo.modules.sys.entity.SysAdmin;
+import com.example.demo.modules.sys.entity.SysRole;
 import com.example.demo.modules.sys.mapper.SysAdminMapper;
+import com.example.demo.modules.sys.mapper.SysRoleMapper;
 import com.example.demo.modules.sys.service.impl.SysAdminServiceImpl;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.annotation.Resource;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 邮件验证过滤器
@@ -25,10 +34,13 @@ public class AdminAuthenticationProvider implements AuthenticationProvider {
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    private SysRoleMapper sysRoleMapper;
 
-    public AdminAuthenticationProvider(SysAdminServiceImpl sysAdminService, BCryptPasswordEncoder bCryptPasswordEncoder){
+
+    public AdminAuthenticationProvider(SysAdminServiceImpl sysAdminService, BCryptPasswordEncoder bCryptPasswordEncoder,SysRoleMapper sysRoleMapper){
         this.bCryptPasswordEncoder=bCryptPasswordEncoder;
         this.sysAdminService=sysAdminService;
+        this.sysRoleMapper = sysRoleMapper;
     }
     /**
      * 认证
@@ -44,7 +56,9 @@ public class AdminAuthenticationProvider implements AuthenticationProvider {
         }
         AdminAuthenticationToken token = (AdminAuthenticationToken) authentication;
         // 从数据库查询 数据
-        UserDetails user = sysAdminService.selectByUsername((String) token.getPrincipal());
+
+        SysAdmin user = sysAdminService.selectByUsername((String) token.getPrincipal());
+
 
         System.out.println(token.getPrincipal());
         if (user == null) {
@@ -54,6 +68,8 @@ public class AdminAuthenticationProvider implements AuthenticationProvider {
         if(!bCryptPasswordEncoder.matches((String)token.getCredentials(),user.getPassword())){
             throw new BadCredentialsException("密码错误");
         }
+        user.setAuthorities(loadAuthorities(user.getRoleId()));
+        user.setRole(loadRoles(user.getRoleId()));
         System.out.println(user.getAuthorities());
 
         AdminAuthenticationToken result =
@@ -63,6 +79,19 @@ public class AdminAuthenticationProvider implements AuthenticationProvider {
         return result;
     }
 
+    public Set<? extends GrantedAuthority> loadAuthorities(String roleId){
+        Set<SimpleGrantedAuthority> authorities =new HashSet<>();
+        SysRole role = loadRoles(roleId);
+        if(role != null){
+            SimpleGrantedAuthority authority =new SimpleGrantedAuthority(role.getName());
+            authorities.add(authority);
+        }
+        return authorities;
+    }
+
+    public SysRole loadRoles(String roleId){
+        return sysRoleMapper.selectRoleByUserId(roleId);
+    }
 
     @Override
     public boolean supports(Class<?> aClass) {

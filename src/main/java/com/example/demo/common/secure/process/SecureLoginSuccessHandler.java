@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 /**
  * Security 登录成功处理类
@@ -40,6 +41,7 @@ public class SecureLoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         SecureUser secureUser = (SecureUser) authentication.getPrincipal();
 
+        System.out.println(secureUser.toString());
         SecureUserToken userToken = secureUserTokenService.createToken(secureUser);
 
         SecureResultToken resultToken = SecureResultToken.builder()
@@ -50,12 +52,15 @@ public class SecureLoginSuccessHandler implements AuthenticationSuccessHandler {
                 .registTime(secureUser.getRegistTime())
                 .upLoginTime(secureUser.getUpLoginTime())
                 .build();
-//        Log log = Log.builder()
-//                .role(secureUser.getRole().getId())
-//                .action(Constant.Log.ACTION_LOGIN)
-//                .user(secureUser.getUsername())
-//                .build();
-//        iLogService.save(log);
+        Log log = Log.builder()
+                .role(secureUser.getRole().getId())
+                .action(Constant.Log.ACTION_LOGIN)
+                .user(secureUser.getUsername())
+                .build();
+        iLogService.save(log);
+
+        resultToken.setUpLoginTime(LocalDateTime.now().toString());
+
         ServletUtil.writeJson(Result.success(ResultCode.LOGIN_SUCCESS,resultToken));
     }
 
