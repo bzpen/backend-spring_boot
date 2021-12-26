@@ -57,9 +57,22 @@ public class TbUserController {
         return Result.decide(ITbUserService.removeById(id));
     }
 
+
     @PostMapping("delList")
     @ApiOperation("批量删除用户")
     public Result delList(@RequestBody List<TbUser> tbUserList){
         return Result.decide(ITbUserService.delList(tbUserList));
+    }
+
+    @GetMapping("roleUp/{id}")
+    @ApiOperation("升级用户权限")
+    public Result roleUp(@PathVariable String id){
+        return Result.decide(ITbUserService.up(id));
+    }
+
+    @GetMapping("roleDown/{id}")
+    @ApiOperation("升级用户权限")
+    public Result roleDown(@PathVariable String id){
+        return Result.decide(ITbUserService.down(id));
     }
 }
