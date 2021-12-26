@@ -8,6 +8,7 @@ import com.example.demo.modules.spider.mapper.TbSpiderMapper;
 import com.example.demo.modules.spider.param.SpiderImgPath;
 import com.example.demo.modules.spider.service.ITbSpiderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.demo.modules.sys.entity.SysRole;
 import org.apache.velocity.shaded.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -134,7 +135,7 @@ public class TbSpiderServiceImpl extends ServiceImpl<TbSpiderMapper, TbSpider> i
     @Override
     public Boolean delImage(String filePath) {
         File save = new File(REAL_IMG_PATH + IMG_SPIDER + filePath);
-        save.delete();
-        return true;
+        System.out.println(REAL_IMG_PATH + IMG_SPIDER + filePath);
+        return save.delete();
     }
 }
