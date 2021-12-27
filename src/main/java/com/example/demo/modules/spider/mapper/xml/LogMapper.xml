@@ -12,4 +12,15 @@
         WHERE role = 3 OR role = 4
     </select>
 
+    <select id="getDate" resultType="com.example.demo.modules.spider.entity.Log">
+        select COUNT(*) from view_sample
+        <where>
+            <if test="startTime != null and startTime != ''">
+                AND `time` <![CDATA[>=]]> #{startTime}
+            </if>
+            <if test="stopTime != null and stopTime != ''">
+                AND `time` <![CDATA[<=]]> #{stopTime}
+            </if>
+        </where>
+    </select>
 </mapper>

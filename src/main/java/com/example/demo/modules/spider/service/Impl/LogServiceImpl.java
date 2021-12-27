@@ -1,5 +1,6 @@
 package com.example.demo.modules.spider.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.modules.spider.entity.Log;
 import com.example.demo.modules.spider.mapper.LogMapper;
 import com.example.demo.modules.spider.service.ILogService;
@@ -23,6 +24,7 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, Log> implements ILogS
 
     @Resource
     LogMapper logMapper;
+
 
     @Override
     public boolean save(Log entity) {
