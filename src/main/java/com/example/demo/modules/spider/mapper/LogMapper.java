@@ -4,6 +4,8 @@ import com.example.demo.modules.spider.entity.Log;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -15,4 +17,18 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface LogMapper extends BaseMapper<Log> {
 
+    /**
+     * 获取用户登录记录
+     *
+     * @return
+     */
+    List<Log> getLoginUser();
+
+
+    /**
+     * 获取管理员登录记录
+     *
+     * @return
+     */
+    List<Log> getLoginAdmin();
 }
