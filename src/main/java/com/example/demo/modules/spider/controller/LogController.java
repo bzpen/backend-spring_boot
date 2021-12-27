@@ -1,10 +1,17 @@
 package com.example.demo.modules.spider.controller;
 
 
+import com.example.demo.common.web.domain.Result;
+import com.example.demo.modules.spider.service.ILogService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.common.web.base.BaseController;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -16,6 +23,24 @@ import com.example.demo.common.web.base.BaseController;
  */
 @RestController
 @RequestMapping("/log")
+@Api(tags = "日志控制器")
 public class LogController extends BaseController {
+
+    @Resource
+    ILogService iLogService;
+
+    @GetMapping("getLogUser")
+    @ApiOperation("获取用户登录记录")
+    public Result getLogUser(){
+        return success(iLogService.getLoginUser());
+    }
+
+    @GetMapping("getLogAdmin")
+    @ApiOperation("获取管理员登录记录")
+    public Result getLogAdmin(){
+        return success(iLogService.getLoginAdmin());
+    }
+
+
 
 }
