@@ -33,6 +33,7 @@ public class LogController extends BaseController {
     @ApiOperation("获取用户登录记录")
     public Result getLogUser(){
         return success(new int[]{3,4,2,5,2});
+
     }
 
     @GetMapping("getLogAdmin")

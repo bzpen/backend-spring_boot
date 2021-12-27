@@ -25,9 +25,6 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, Log> implements ILogS
     @Resource
     LogMapper logMapper;
 
-    int[] user={3,4,2,5,2};
-
-    int[] admin={1,2,2,7,3};
 
     @Override
     public boolean save(Log entity) {
@@ -38,7 +35,6 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, Log> implements ILogS
 
     @Override
     public List<Log> getLoginUser() {
-
         return logMapper.getLoginUser();
     }
 
