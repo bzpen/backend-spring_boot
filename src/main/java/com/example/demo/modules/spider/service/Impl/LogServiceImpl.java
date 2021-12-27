@@ -1,5 +1,6 @@
 package com.example.demo.modules.spider.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.modules.spider.entity.Log;
 import com.example.demo.modules.spider.mapper.LogMapper;
 import com.example.demo.modules.spider.service.ILogService;
@@ -24,6 +25,10 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, Log> implements ILogS
     @Resource
     LogMapper logMapper;
 
+    int[] user={3,4,2,5,2};
+
+    int[] admin={1,2,2,7,3};
+
     @Override
     public boolean save(Log entity) {
         entity.setDate(LocalDateTime.now());
@@ -33,6 +38,7 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, Log> implements ILogS
 
     @Override
     public List<Log> getLoginUser() {
+
         return logMapper.getLoginUser();
     }
 
