@@ -68,7 +68,6 @@ public class TbSpiderServiceImpl extends ServiceImpl<TbSpiderMapper, TbSpider> i
     @Override
     public Result add(TbSpider spider) {
         String file_path= Long.toString(System.currentTimeMillis());
-        System.out.println(this.getSpider(spider.getName()));
         try{
             if(this.getSpider(spider.getName()) != null){
                 return Result.failure("种类名称重复！");
@@ -138,4 +137,5 @@ public class TbSpiderServiceImpl extends ServiceImpl<TbSpiderMapper, TbSpider> i
         System.out.println(REAL_IMG_PATH + IMG_SPIDER + filePath);
         return save.delete();
     }
+
 }

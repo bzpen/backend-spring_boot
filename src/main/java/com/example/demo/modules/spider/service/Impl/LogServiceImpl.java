@@ -38,12 +38,12 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, Log> implements ILogS
     }
 
 
-    @Override
     public LogList getLogData() {
 
         Calendar calendar = Calendar.getInstance();
         Date date= new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");//设置当前时间的格式，为年-月-日
+
 
         calendar.setTime(date);//把当前时间赋给日历
         calendar.add(Calendar.DAY_OF_MONTH, 2- calendar.get(Calendar.DAY_OF_WEEK));  //设置为前一天

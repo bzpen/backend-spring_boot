@@ -33,5 +33,6 @@ public class LogController extends BaseController {
     @ApiOperation("获取登录记录")
     public Result getLog(){
         return success(iLogService.getLogData());
+
     }
 }
