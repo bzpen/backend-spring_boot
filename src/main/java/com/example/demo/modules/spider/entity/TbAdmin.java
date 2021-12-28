@@ -43,8 +43,8 @@ public class TbAdmin implements Serializable {
     @TableField("userPhoto")
     private String userPhoto;
 
-    @TableField("role")
-    private Integer role;
+    @TableField("roleId")
+    private Integer roleId;
 
     @TableField("enable")
     private Boolean enable;
