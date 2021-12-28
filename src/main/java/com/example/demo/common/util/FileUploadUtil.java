@@ -82,6 +82,7 @@ public class FileUploadUtil {
 
                     dataList.add(viewSample);
                 }catch(Exception e){
+                    e.printStackTrace();
                     System.out.println("读取错误");
                 }
             } else {

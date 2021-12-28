@@ -47,7 +47,7 @@ public class SecureLoginSuccessHandler implements AuthenticationSuccessHandler {
         SecureResultToken resultToken = SecureResultToken.builder()
                 .token(secureUserTokenService.saveToken(userToken))
                 .username(secureUser.getUsername())
-                .userPhoto(secureUser.getUserPhoto())
+                .userPhoto(Constant.Img.VIRTUAL_IMG_PATH + secureUser.getUserPhoto())
                 .email(secureUser.getEmail())
                 .registTime(secureUser.getRegistTime())
                 .upLoginTime(secureUser.getUpLoginTime())

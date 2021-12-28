@@ -2,6 +2,7 @@ package com.example.demo.modules.spider.mapper;
 
 import com.example.demo.modules.spider.entity.Log;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.demo.modules.spider.param.PageSampleRequest;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public interface LogMapper extends BaseMapper<Log> {
      *
      * @return
      */
-    List<Log> getLoginUser();
+    Integer getLoginUser(PageSampleRequest request);
 
 
     /**
@@ -30,5 +31,12 @@ public interface LogMapper extends BaseMapper<Log> {
      *
      * @return
      */
-    List<Log> getLoginAdmin();
+    Integer getLoginAdmin(PageSampleRequest request);
+
+    /**
+     * 获取当周登录人数数据
+     *
+     * @return
+     */
+    Integer getDate(PageSampleRequest request);
 }

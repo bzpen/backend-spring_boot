@@ -29,17 +29,10 @@ public class LogController extends BaseController {
     @Resource
     ILogService iLogService;
 
-    @GetMapping("getLogUser")
-    @ApiOperation("获取用户登录记录")
-    public Result getLogUser(){
-        return success(new int[]{3,4,2,5,2});
+    @GetMapping("getLog")
+    @ApiOperation("获取登录记录")
+    public Result getLog(){
+        return success(iLogService.getLogData());
 
     }
-
-    @GetMapping("getLogAdmin")
-    @ApiOperation("获取管理员登录记录")
-    public Result getLogAdmin(){
-        return success(new int[]{1,2,2,7,3});
-    }
-
 }

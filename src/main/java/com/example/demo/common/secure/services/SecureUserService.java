@@ -26,7 +26,6 @@ public class SecureUserService implements UserDetailsService {
 
     @Resource
     private SysUserMapper sysUserMapper;
-
     @Resource
     private SysRoleMapper sysRoleMapper;
 
@@ -35,8 +34,10 @@ public class SecureUserService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        System.out.println(username);
         SysUser sysUser = sysUserMapper.selectByUsername(username);
-        if(sysUser ==null){
+        if(sysUser == null){
             throw new UsernameNotFoundException("USERNAME NOT SUPPORT");
         }
         sysUser.setAuthorities(loadAuthorities(sysUser.getRoleId()));

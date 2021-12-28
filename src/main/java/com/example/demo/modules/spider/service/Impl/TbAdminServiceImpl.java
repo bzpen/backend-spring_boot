@@ -43,7 +43,7 @@ public class TbAdminServiceImpl extends ServiceImpl<TbAdminMapper, TbAdmin> impl
                 .userPhoto("/root/java/java_backend/admin/head.jpg")
                 .locked(false)
                 .name(entity.getName())
-                .role(4)
+                .roleId(4)
                 .username(entity.getUsername())
                 .password(bCryptPasswordEncoder.encode(entity.getPassword()))
                 .build();
