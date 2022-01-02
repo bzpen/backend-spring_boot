@@ -46,8 +46,10 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, Log> implements ILogS
 
 
         calendar.setTime(date);//把当前时间赋给日历
-        calendar.add(Calendar.DAY_OF_MONTH, 2- calendar.get(Calendar.DAY_OF_WEEK));  //设置为前一天
+        calendar.add(Calendar.DAY_OF_MONTH, getNum(calendar.get(Calendar.DAY_OF_WEEK)));  //设置为前一天
         date = calendar.getTime();   //得到前一天的时间
+
+        System.out.println(dateFormat.format(date));
 
         PageSampleRequest request=new PageSampleRequest();
 
@@ -60,6 +62,7 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, Log> implements ILogS
             request.setStopTime(dateFormat.format(date));
 
 
+
             logList.getUser().add(logMapper.getLoginUser(request));
 
             logList.getAdmin().add(logMapper.getLoginAdmin(request));
@@ -67,5 +70,13 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, Log> implements ILogS
         }
 
         return logList;
+    }
+
+
+    public int getNum(int n){
+        if(n==1)
+            return n-7;
+        else
+            return 2-n;
     }
 }
